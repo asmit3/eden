@@ -149,7 +149,7 @@ class map_value_calculator(object):
       plt.show()
     return (x2,y2,z2)
 
-  def get_map_value_around_spherical_grid(self, center_of_sphere=(-18.135, -16.404, -6.739), threshold_sigma=0.0):
+  def get_map_value_around_spherical_grid(self, center_of_sphere=(-18.135, -16.404, -6.739), threshold_sigma=1.0):
     map_value = 0.0
     positive_map_value = flex.double([0.0])
     negative_map_value = flex.double([0.0])
