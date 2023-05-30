@@ -1,0 +1,3 @@
+[submodule "crystalline_MD/PSII_JACS_2023/Molecular-Dynamics-Analysis-in-Python"]
+	path = crystalline_MD/PSII_JACS_2023/Molecular-Dynamics-Analysis-in-Python
+	url = https://github.com/mdoyle17/Molecular-Dynamics-Analysis-in-Python
