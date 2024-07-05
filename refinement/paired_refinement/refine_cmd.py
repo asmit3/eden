@@ -2,6 +2,7 @@ from iotbx.cli_parser import run_program
 from phenix.programs import phenix_refine
 from phenix.programs.phenix_refine import custom_process_arguments
 from libtbx.phil import parse
+from libtbx.program_template import ProgramTemplate
 import numpy as np
 import os
 import copy
@@ -10,71 +11,70 @@ import mmtbx, iotbx
 from iotbx import reflection_file_reader
 from scitbx.array_family import flex
 
-phil_str = """
-  model_filename = None
-    .type = str
-    .help = Name of the model file. Please provide the path
-  sf_filename = None
-    .type = str
-    .help = Name of mtz/sf-cif filename
-  upper_high_resolution = None
-    .type = float
-    .help = Upper limit of high_resolution to use. Eg. for paired-refinement between 2.0-1.5A, this would be 1.5A
-  lower_high_resolution = None
-    .type = float
-    .help = Lower limit of high_resolution to use. Eg. for paired-refinement between 2.0-1.5A, this would be 2.0A
-  resolution_bin_size = None
-    .type = float
-    .help = Resolution bin size to use. For example, 0.01 or 0.1A would be good picks
-  restraint_files = None
-    .type = str
-    .help = Supply restraint files for refinement
-    .multiple = True 
-  phenix_refine_params_file = None
-    .type = str
-    .help = Supply all parameters or basic other refinement stuff in this parameter file. Please do not specify high resolution as that should be done using the phil scope of this current program.
-  folder_prefix = None
-    .type = str
-    .help = Prefix for the paired refinement folders. Default will be dataset_res1_res2 with subfolders dataset_res1 and dataset_res2. Res1 and res2 will be numbers 
-  nproc = 1
-    .type = int
-    .help = Number of processors to use to run the refinement jobs
-  output_folder = None
-    .type = str
-    .help = Output folder where results will be saved. Will be relative to the base_path 
-  randomize_model = True
-    .type = bool
-    .help = randomize the x,y,z coordinates by an rms (right now 0.25) and also adp. Random seed is hardcoded for now. 
-"""
 
-phil_scope = parse(phil_str)
+class Program(ProgramTemplate):
+  datatypes = ['model', 'phil', 'miller_array', 'restraint']
+  # phenix.refine does not skip this
+  #data_manager_options = ['model_skip_expand_with_mtrix']
 
-def params_from_phil(args, phil_scope=phil_scope):
-  user_phil = []
-  for arg in args:
-    if os.path.isfile(arg):
-      user_phil.append(parse(file_name=arg))
-    else:
-      try:
-        user_phil.append(parse(arg))
-      except Exception as e:
-        raise Sorry("Unrecognized argument: %s"%arg)
-  params = phil_scope.fetch(sources=user_phil).extract()
-  return params
+  master_phil_str = """
+  input_files {
+    include scope iotbx.map_model_manager.map_model_phil_str
+    }
+    upper_high_resolution = None
+      .type = float
+      .help = Upper limit of high_resolution to use. Eg. for paired-refinement between 2.0-1.5A, this would be 1.5A
+    lower_high_resolution = None
+      .type = float
+      .help = Lower limit of high_resolution to use. Eg. for paired-refinement between 2.0-1.5A, this would be 2.0A
+    resolution_bin_size = None
+      .type = float
+      .help = Resolution bin size to use. For example, 0.01 or 0.1A would be good picks
+    phenix_refine_params_file = None
+      .type = str
+      .help = Supply all parameters or basic other refinement stuff in this parameter file. Please do not specify high resolution as that should be done using the phil scope of this current program.
+    folder_prefix = None
+      .type = str
+      .help = Prefix for the paired refinement folders. Default will be dataset_res1_res2 with subfolders dataset_res1 and dataset_res2. Res1 and res2 will be numbers 
+    nproc = 1
+      .type = int
+      .help = Number of processors to use to run the refinement jobs
+    output_folder = None
+      .type = str
+      .help = Output folder where results will be saved. Will be relative to the base_path 
+    randomize_model = True
+      .type = bool
+      .help = randomize the x,y,z coordinates by an rms (right now 0.25) and also adp. Random seed is hardcoded for now. 
+  """
+  def validate(self):
+    print('Validating inputs', file=self.logger)
+    self.data_manager.has_models(
+      raise_sorry = True,
+      expected_n  = 1,
+      exact_count = True)
+    m = self.data_manager.get_model()
+    print ('Inputs OK', file=self.logger)
 
+  def run(self):
+    print ('Running the paired refinement program through ProgramTemplate')
+    pr = paired_refiner(self.params, self.data_manager)
+    pr.make_folders(do_not_create=False)
+    if True:
+      pr.run_paired_refinement()
+    pr.get_rfactor_statistics()
+    
+    
 
 class paired_refiner(object):
 
-  def __init__(self, args):
+  def __init__(self, params, data_manager):
     self.base_path = os.getcwd()
-    params = params_from_phil(args)
-    assert params.model_filename is not None, 'Please supply model filename'
-    assert params.sf_filename is not None, 'Please supply structure factor file'
     #assert params.phenix_refine_params_file, 'Please supply basic phenix_refine parameter file'
-    self.model_filename=os.path.join(self.base_path, params.model_filename)
-    self.sf_filename=os.path.join(self.base_path, params.sf_filename)
+    self.model_filename=os.path.join(self.base_path, data_manager.get_model_names()[0])
+    self.sf_filename=os.path.join(self.base_path, data_manager.get_miller_array_names()[0])
+
     self.arguments_for_phenixrefine = [self.model_filename, self.sf_filename,]
-    for restraint_file in params.restraint_files:
+    for restraint_file in data_manager.get_restraint_names():
       self.arguments_for_phenixrefine.append(os.path.join(self.base_path, restraint_file))
     if params.phenix_refine_params_file is not None:
       self.arguments_for_phenixrefine.append(os.path.join(self.base_path, params.phenix_refine_params_file))
@@ -95,6 +95,8 @@ class paired_refiner(object):
       self.output_folder = '.'
     else:
       self.output_folder = params.output_folder
+    if not os.path.exists(self.output_folder):
+      os.makedirs(os.path.join(self.base_path, self.output_folder))
 
     # Now establish the resolutions at which refinements should be done
     self.bins = np.arange(self.upper_high_resolution, self.lower_high_resolution+self.resolution_bin_size, self.resolution_bin_size)
@@ -141,9 +143,9 @@ class paired_refiner(object):
     for ii, folder in enumerate(self.all_folders):
       os.chdir(os.path.join(self.output_folder, folder))
       high_resolution = float(folder.split('_')[-1])
-      args = copy.deepcopy(self.arguments_for_phenixrefine)
       #self.run_refinement(args+['xray_data.high_resolution=%.2f'%high_resolution])
       for jj in range(self.n_subfolders):
+        args = copy.deepcopy(self.arguments_for_phenixrefine)
         trial_folder='t%d'%(jj+1)
         if self.randomize_model:
           args += ['main.random_seed=%d'%((ii+1)*self.n_subfolders+jj+22)] # Offset of 22 just for fun
@@ -157,13 +159,13 @@ class paired_refiner(object):
   def get_rfactor_statistics(self):
     table = []
     for folder in self.all_parent_folders:
-      print ('Getting R-factor from %s'%folder)
+      print ('Getting Paired Refinement R-factor statistics from %s'%folder)
       res1=float(folder.split('_')[-2])
       res2=float(folder.split('_')[-1])
-      rwork1, rfree1 = self.get_rfactors_from_single_refinement(lower_high_resolution=res2, folder = os.path.join(folder, self.folder_prefix+'_%.2f'%res1))
-      rwork2, rfree2 = self.get_rfactors_from_single_refinement(lower_high_resolution=res2, folder = os.path.join(folder, self.folder_prefix+'_%.2f'%res2))
+      rwork1, rfree1, std_rwork1, std_rfree1 = self.get_rfactors_from_single_refinement(lower_high_resolution=res2, folder = os.path.join(folder, self.folder_prefix+'_%.2f'%res1))
+      rwork2, rfree2, std_rwork2, std_rfree2 = self.get_rfactors_from_single_refinement(lower_high_resolution=res2, folder = os.path.join(folder, self.folder_prefix+'_%.2f'%res2))
 
-      text = ['%.2f - %.2f'%(res1, res2), rwork1, rwork2, rwork1-rwork2,rfree1, rfree2, rfree1-rfree2]
+      text = ['%.2f - %.2f'%(res1, res2), '%.6f(%.6f)'%(rwork1, std_rwork1), '%.6f(%.6f)'%(rwork2, std_rwork2), rwork1-rwork2,'%.6f(%.6f)'%(rfree1,std_rfree1), '%.6f(%.6f)'%(rfree2,std_rfree2), rfree1-rfree2]
       table.append(text)
     from tabulate import tabulate
     print (tabulate(table, headers=['Resolution bins', 'Rwork(higher)', 'Rwork(lower)', 'deltaR(high-low)','Rfree(higher)', 'Rfree(lower)', 'deltaRfree(high-low)', ], tablefmt='orgtbl'))
@@ -203,12 +205,20 @@ class paired_refiner(object):
         all_rfree.append(rfree)
       os.chdir(self.base_path)
       avg_rwork = flex.mean(all_rwork)
+      std_rwork = all_rwork.standard_deviation_of_the_sample()
       avg_rfree = flex.mean(all_rfree)
-      return (avg_rwork, avg_rfree)
+      std_rfree = all_rfree.standard_deviation_of_the_sample()
+      return (avg_rwork, avg_rfree, std_rwork, std_rfree)
+
+#def run(args):
+#  pr = paired_refiner(args)
+#  pr.make_folders(do_not_create=False)
+#  if True:
+#    pr.run_paired_refinement()
+#  pr.get_rfactor_statistics()
+
 
 if __name__ == '__main__':
   import sys
-  pr = paired_refiner(sys.argv[1:]) 
-  pr.make_folders(do_not_create=False)
-  pr.run_paired_refinement()
-  pr.get_rfactor_statistics()
+  from iotbx.cli_parser import run_program
+  run_program(program_class=Program)
