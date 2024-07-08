@@ -14,8 +14,7 @@ from scitbx.array_family import flex
 
 class Program(ProgramTemplate):
   datatypes = ['model', 'phil', 'miller_array', 'restraint']
-  # phenix.refine does not skip this
-  #data_manager_options = ['model_skip_expand_with_mtrix']
+  data_manager_options = ['model_skip_expand_with_mtrix']
 
   master_phil_str = """
   input_files {
@@ -177,28 +176,14 @@ class paired_refiner(object):
       for ii in range(self.n_subfolders):
         trial_folder = 't%d'%(ii+1)
         os.chdir(os.path.join(self.output_folder, folder, trial_folder))
+        print ('Getting R-factor statistics from folder %s, %s'%(folder, trial_folder))
         pdb_files = glob.glob( '*.pdb') # XXX This assumes only pdb file format
         assert len(pdb_files) == 1
         phenix_refine_prefix = pdb_files[0].split('.pdb')[0]
         mtz_file = phenix_refine_prefix+'.mtz' 
-        #print ('PDB and MTZ file = ', pdb_files[0], mtz_file)
-        # Now read in fmodel
-        pdb_inp = iotbx.pdb.input(file_name = pdb_files[0])
-        model = mmtbx.model.manager(model_input = pdb_inp)
-        miller_arrays = reflection_file_reader.any_reflection_file(file_name =
-        mtz_file).as_miller_arrays()
-        for m_array in miller_arrays:
-          if m_array.info().label_string() == 'F-obs-filtered,SIGF-obs-filtered':
-            f_obs = m_array#.resolution_filter(d_min=1.95)
-            #f_obs = m_array.as_amplitude_array()#.resolution_filter(d_min=1.95) <-- Only needed for I-obs
-          if m_array.info().label_string() == 'R-free-flags':
-            r_free_flags = m_array
-        f_obs, r_free_flags = f_obs.common_sets(r_free_flags)
-        r_free_flags = r_free_flags.array(data = r_free_flags.data()==0)
-        #print(r_free_flags.data().count(True), r_free_flags.data().count(False))
-        fmodel = mmtbx.f_model.manager(f_obs=f_obs, r_free_flags=r_free_flags, xray_structure=model.get_xray_structure())
-        fmodel = fmodel.resolution_filter(d_min=lower_high_resolution) # Cutting data here to right resolution
-        fmodel.update_all_scales()
+        from mmtbx.model_vs_data import run as run_model_vs_data
+        fmodel = run_model_vs_data([mtz_file, pdb_files[0], 'resolution=%.2f'%lower_high_resolution])
+        print ('Done with mmtbx.model_vs_data')
         rwork = fmodel.r_work()
         rfree = fmodel.r_free()
         all_rwork.append(rwork)
@@ -209,14 +194,6 @@ class paired_refiner(object):
       avg_rfree = flex.mean(all_rfree)
       std_rfree = all_rfree.standard_deviation_of_the_sample()
       return (avg_rwork, avg_rfree, std_rwork, std_rfree)
-
-#def run(args):
-#  pr = paired_refiner(args)
-#  pr.make_folders(do_not_create=False)
-#  if True:
-#    pr.run_paired_refinement()
-#  pr.get_rfactor_statistics()
-
 
 if __name__ == '__main__':
   import sys
