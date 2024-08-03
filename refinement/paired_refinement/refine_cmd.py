@@ -64,7 +64,7 @@ class Program(ProgramTemplate):
     pr.make_folders(do_not_create=do_not_create)
     if not do_not_create:
       pr.run_paired_refinement()
-    pr.run_randomized_control_refinement()
+      pr.run_randomized_control_refinement()
     pr.get_rfactor_statistics()
     
     
@@ -227,12 +227,21 @@ class paired_refiner(object):
     delta_rfree = []
     error_rwork = []
     error_rfree = []
+    delta_rwork_randomized = []
+    delta_rfree_randomized = []
+    error_rwork_randomized = []
+    error_rfree_randomized = []
     for folder in self.all_parent_folders:
       print ('Getting Paired Refinement R-factor statistics from %s'%folder)
       res1=float(folder.split('_')[-2]) # 1 is at higher resolution
       res2=float(folder.split('_')[-1]) # 2 is at lower resolution
       rwork1, rfree1, std_rwork1, std_rfree1 = self.get_rfactors_from_single_refinement(lower_high_resolution=res2, folder = os.path.join(folder, self.folder_prefix+'_%.2f'%res1))
       rwork2, rfree2, std_rwork2, std_rfree2 = self.get_rfactors_from_single_refinement(lower_high_resolution=res2, folder = os.path.join(folder, self.folder_prefix+'_%.2f'%res2))
+
+
+      if self.randomize_outerbin:
+        rwork3, rfree3, std_rwork3, std_rfree3 = self.get_rfactors_from_single_refinement(lower_high_resolution=res2, folder = os.path.join(folder, '%s_randomized_outerbin_%.2f'%(self.folder_prefix,res1)))
+        
 
       text = ['%.2f - %.2f'%(res1, res2), '%.6f(%.6f)'%(rwork1, std_rwork1), '%.6f(%.6f)'%(rwork2, std_rwork2), rwork1-rwork2,'%.6f(%.6f)'%(rfree1,std_rfree1), '%.6f(%.6f)'%(rfree2,std_rfree2), rfree1-rfree2]
       table.append(text)
@@ -242,27 +251,47 @@ class paired_refiner(object):
       delta_rfree.append(rfree1-rfree2)
       error_rwork.append(std_rwork2)
       error_rfree.append(std_rfree2)
+      delta_rwork_randomized.append(rwork3-rwork2)
+      delta_rfree_randomized.append(rfree3-rfree2) # This should be Rfree(scambled higher bin) - Rfree(lower res refinement)
+      #from IPython import embed; embed(); exit()
+      error_rwork_randomized.append(std_rwork3)
+      error_rfree_randomized.append(std_rfree3)
 
     resolution_bins.reverse()
     delta_rwork.reverse()
     delta_rfree.reverse()
     error_rwork.reverse()
     error_rfree.reverse()
+    delta_rwork_randomized.reverse()
+    delta_rfree_randomized.reverse()
+    error_rwork_randomized.reverse()
+    error_rfree_randomized.reverse()
+    pickled_data = {'delta_rwork':delta_rwork, 'delta_rfree':delta_rfree, 'error_rwork':error_rwork, 'error_rfree':error_rfree, 'delta_rwork_randomized':delta_rwork_randomized, 'delta_rfree_randomized':delta_rfree_randomized, 'error_rwork_randomized':error_rwork_randomized, 'error_rfree_randomized':error_rfree_randomized}
+    from libtbx.easy_pickle import dump
+    dump(os.path.join(self.base_path, self.output_folder, 'paired_refinement_rfactors_%s.pickle'%self.output_folder), pickled_data)
 
     from tabulate import tabulate
     print (tabulate(table, headers=['Resolution bins', 'Rwork(higher)', 'Rwork(lower)', 'deltaR(high-low)','Rfree(higher)', 'Rfree(lower)', 'deltaRfree(high-low)', ], tablefmt='orgtbl'))
     # Let us plot the R factors using a bar plot
+
+    #for folder in self.all_randomized_folders:
+      
+
     if True:
       import matplotlib.pyplot as plt
       indices = np.arange(len(delta_rwork))
-      width=0.3
+      width=0.15
       plt.bar(indices, delta_rwork, width,yerr=error_rwork, label='delta Rwork')
       plt.bar(indices+width, delta_rfree, width,yerr=error_rfree, label='delta Rfree')
+      plt.bar(indices+2*width, delta_rwork_randomized, width,yerr=error_rwork_randomized, label='delta Rwork randomized', hatch='//')
+      plt.bar(indices+3*width, delta_rfree_randomized, width,yerr=error_rfree_randomized, label='delta Rfree randomized', hatch='//')
+      plt.bar(indices+4*width, [0.0], width)
       plt.legend()
       plt.ylabel('R-factor')
       plt.xlabel('Resolution bin')
-      plt.xticks(indices, resolution_bins)
+      plt.xticks(indices, resolution_bins, rotation=0)
       plt.savefig(os.path.join(self.base_path, self.output_folder, 'paired_refinement_%s.pdf'%self.output_folder), dpi=300, format='pdf')
+      
       #plt.show()
 
   def get_rfactors_from_single_refinement(self, lower_high_resolution=None, folder=None,):
