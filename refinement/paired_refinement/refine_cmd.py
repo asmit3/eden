@@ -323,4 +323,9 @@ class paired_refiner(object):
 if __name__ == '__main__':
   import sys
   from iotbx.cli_parser import run_program
+  """ This program is a slightly different way of doing paired refinement. Instead of starting from a low resolution
+      dataset and gradually improving it, here we refine every resolution bin using a slightly different perturbed
+      structure. Thus each refinement is in someway independent of the other lower resolution refinement. Additional
+      control where the extra resolution shell is scrambled is also done to get a noise estimate. Because the 
+      refinements are all independent of each other, they can be parallelized using easy_mp"""
   run_program(program_class=Program)
