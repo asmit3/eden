@@ -48,6 +48,12 @@ class Program(ProgramTemplate):
     randomize_outerbin = True
       .type = bool
       .help = randomize the outerbin of each paired dataset as a control. Example, if we do a 2.0 and 2.10 A paired refinement, we will randomize the 2.0-2.1A bin for an additional refinement for the 2.0A case to see how the R-factors look 
+    binning_strategy = *resolution volume
+      .type = choice
+      .help = select between binning mode of equal resolution bins or equal volume (i.e same # of reflection bins).
+    volume_nbins = 10
+      .type = int
+      .help = number of bins between upper_high_res and lower_high_res to use when using the binning_strategy of volume 
   """
   def validate(self):
     print('Validating inputs', file=self.logger)
@@ -103,7 +109,16 @@ class paired_refiner(object):
       os.makedirs(os.path.join(self.base_path, self.output_folder))
 
     # Now establish the resolutions at which refinements should be done
-    self.bins = np.flip(np.arange(self.upper_high_resolution, self.lower_high_resolution+self.resolution_bin_size, self.resolution_bin_size)) # self.bins goes from low res to high res eg. [2.0, 1.9, 1.8 .....1.5]
+    if params.binning_strategy == 'resolution':
+      self.bins = np.flip(np.arange(self.upper_high_resolution, self.lower_high_resolution+self.resolution_bin_size, self.resolution_bin_size)) # self.bins goes from low res to high res eg. [2.0, 1.9, 1.8 .....1.5]
+    if params.binning_strategy == 'volume':
+      array=data_manager.get_miller_arrays()[0] # Any array should be fine but ideally the first one which contains I-obs,SIGI-obs info ?
+      binner=array.setup_binner(d_min=params.upper_high_resolution, d_max=params.lower_high_resolution,n_bins=params.volume_nbins)
+      binner.show_summary()
+      self.bins = []
+      for nbin in range(1,params.volume_nbins+2):
+        self.bins.append(binner.bin_d_min(nbin))
+      self.bins = np.array(self.bins)
     self.n_subfolders=5 # Hardcoding number of subfolders t1,t2,t3 for now
     self.randomize_outerbin = params.randomize_outerbin
 
