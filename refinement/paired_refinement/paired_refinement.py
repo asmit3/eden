@@ -185,7 +185,7 @@ class paired_refiner(object):
           folder ='%s_%.2f'%(self.folder_prefix, res_bin)
           randomized_folder = '%s_randomized_outerbin_%.2f'%(self.folder_prefix, res_bin)
           # dmin, dmax range for permutation
-          d_min,d_max = high_resolution, high_resolution+self.resolution_bin_size
+          d_min, d_max = high_resolution, self.bins[ii-1]
           # Read in phenix.refine mtz file from the regular high_resolution refinement for each trial 
           for jj in range(self.n_subfolders):
             trial_folder='t%d'%(jj+1)
