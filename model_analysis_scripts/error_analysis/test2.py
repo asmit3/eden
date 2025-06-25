@@ -18,7 +18,9 @@ except SyntaxError as e:
 # Initialize RNG with that seed
 np.random.seed(seed)
 
-mtz_obj = mtz.object("/Users/kanishkkondaka/Desktop/phenix/0F.mtz")
+mtz_obj = mtz.object("/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/0F.mtz")
+# /Users/kanishkkondaka/Desktop/phenix/0F.mtz
+
 
 dataset = mtz_obj.as_miller_arrays_dict()
 
@@ -51,7 +53,6 @@ sigf_values = np.array(list(sigmas))
 
 difference_f_values = np.abs((f_values - fmodel_values))/ f_values
 
-#error.write_out_intensities(difference_f_values,'output.txt')
 delta_f = np.abs(f_values - fmodel_values)
 R_work = np.sum(np.abs(f_values - fmodel_values))/np.sum(f_values)
 
@@ -196,7 +197,7 @@ for i, idx in enumerate(x_values, start=1):
 
 
 
-
+"""
 #outputting the 100 mtz files 
 fobs_simulations = np.random.normal(loc=f_values[None, :], scale=sigf_values[None, :], size=(100, len(f_values)))
 
@@ -207,7 +208,7 @@ for i in range(len(fobs_simulations)):
 
     mtz_dataset = new_miller_array.as_mtz_dataset(column_root_label="Fobs_perturbed")
     mtz_dataset.mtz_object().write("output"+ str(i+1)+".mtz")
-
+"""
 
 
 
