@@ -133,31 +133,36 @@ plt.gca().invert_xaxis()
 
 
 
-bins = np.linspace(min(resolution_values), max(resolution_values), 30)
-bin_indices = np.digitize(resolution_values, bins) # assigns bins to each value
+bins = np.linspace(min(resolution_values), max(resolution_values), 30) # creates bins for the resolution values
+# start, stop, num
+bin_indices = np.digitize(resolution_values, bins) # assigns bins to each value, makes then in conjunction for plt.bar
 
-#np.any detects if it is true in an array
+
 binned_means = []
 
 for i in range(1, len(bins)):
-    values_in_bin = difference_f_values[bin_indices == i]
+    values_in_bin = difference_f_values[bin_indices == i] # selects all elements from difference_f_values that are in bin i
     
-    if np.any(bin_indices == i):
-        mean_value = values_in_bin.mean()
+    if np.any(bin_indices == i): #np.any checks if there is at least one value assigned to bin i
+        mean_value = values_in_bin.mean() # we calculate the mean of those values in that bin
     else:
-        mean_value = 0    
-    binned_means.append(mean_value)
+        mean_value = 0    #alternate case if they are outside a bin, usually just a fallback
+    binned_means.append(mean_value) # collecting it in an array
 
 # Plot
-plt.figure(figsize=(10, 5))
+plt.figure(figsize=(10, 4))
 plt.bar(bins[:-1], binned_means, width=np.diff(bins), align='edge',
-        color='skyblue', edgecolor='black')
+        color='skyblue', edgecolor='black') # reverse bins because we are reversing the xaxis
+# np.diff computes step sizes 
 plt.xlabel('Resolution ')
 plt.ylabel('Mean Rwork')
 plt.title('Binned Relative Differences vs Resolution')
 plt.gca().invert_xaxis()  
 plt.tight_layout()
-plt.show()
+
+
+
+
 
 
 
@@ -197,10 +202,11 @@ for i, idx in enumerate(x_values, start=1):
 
 
 
-"""
+
 #outputting the 100 mtz files 
 fobs_simulations = np.random.normal(loc=f_values[None, :], scale=sigf_values[None, :], size=(100, len(f_values)))
-
+"""
+UNCOMMENT THIS FOR OUTPUTTING FILES
 for i in range(len(fobs_simulations)): 
     x_flex = flex.double(fobs_simulations[i,:])
 
@@ -209,7 +215,28 @@ for i in range(len(fobs_simulations)):
     mtz_dataset = new_miller_array.as_mtz_dataset(column_root_label="Fobs_perturbed")
     mtz_dataset.mtz_object().write("output"+ str(i+1)+".mtz")
 """
+fobs_binned_means = []
 
+for i in range(1, len(bins)):
+    values_in_bin = fobs_simulations[0][bin_indices == i] # selects all elements from difference_f_values that are in bin i
+    
+    if np.any(bin_indices == i): #np.any checks if there is at least one value assigned to bin i
+        mean_value = values_in_bin.mean() # we calculate the mean of those values in that bin
+    else:
+        mean_value = 0    #alternate case if they are outside a bin
+    fobs_binned_means.append(mean_value) # collecting it in an array
+
+# Plot
+plt.figure(figsize=(10, 4))
+plt.bar(bins[:-1], fobs_binned_means, width=np.diff(bins), align='edge',
+        color='skyblue', edgecolor='black') # reverse bins because we are reversing the xaxis
+# np.diff computes step sizes 
+plt.xlabel('Resolution ')
+plt.ylabel('Fobs +/- SigF')
+plt.title('Binned Resolution vs Fobs +/- SigF')
+plt.gca().invert_xaxis()  
+plt.tight_layout()
+plt.show()
 
 
 
