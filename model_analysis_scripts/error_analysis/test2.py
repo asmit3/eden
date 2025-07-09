@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 from IPython import embed
 from iotbx import mtz
 from scitbx.array_family import flex
+import pandas as pd
+import sys
 
 
 seed = np.random.randint(0, 2**32 - 1)  
@@ -19,7 +21,7 @@ except SyntaxError as e:
 np.random.seed(seed)
 
 mtz_obj = mtz.object("/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/0F.mtz")
-# /Users/kanishkkondaka/Desktop/phenix/0F.mtz
+# /Users/kanishkkondaka/Desktop/phenix/0F.mtz 
 
 
 dataset = mtz_obj.as_miller_arrays_dict()
@@ -45,15 +47,11 @@ f_values = np.array(list(data_values))
 sigmas = fobs_array.sigmas()
 sigf_values = np.array(list(sigmas))
 
-#error = error_estimator()
-
-#noisy_f_values = error.randomize_intensities(f_values, sigf_values)
-
-
-
-difference_f_values = np.abs((f_values - fmodel_values))/ f_values
-
+difference_f_values = np.abs((f_values - fmodel_values))/ np.abs(f_values)
+difference = np.abs((f_values - fmodel_values))
 delta_f = np.abs(f_values - fmodel_values)
+overall_rwork = np.sum(np.abs((f_values - fmodel_values)))/(np.sum(f_values))
+print("The overall Rwork is: ", overall_rwork)
 R_work = np.sum(np.abs(f_values - fmodel_values))/np.sum(f_values)
 
 
@@ -101,7 +99,7 @@ fmodelf = fmodel_array.resolution_filter(d_min = 2.08, d_max = 2.312).amplitudes
 fmodelf = np.array(list(fmodelf))
 
 Rworkf = np.sum(np.abs(fobsf - fmodelf))/np.sum(fobsf)
-print("The Rwork is: ", Rworkf)
+print("The Rwork for last bin is: ", Rworkf)
 
 """
 #Plotting Fobs vs Fmodel
@@ -121,7 +119,7 @@ plt.show()
 
 #Plotting Resolution vs deltaf_over_fo
 plt.figure(figsize =(10,4))
-plt.scatter(resolution_values, difference_f_values)
+plt.scatter(resolution_values, difference/f_values)
 #plt.ylim(0, 1)
 plt.axhline(1.0)
 plt.title('Resolution vs Rwork ')
@@ -133,32 +131,70 @@ plt.gca().invert_xaxis()
 
 
 
-bins = np.linspace(min(resolution_values), max(resolution_values), 30) # creates bins for the resolution values
-# start, stop, num
-bin_indices = np.digitize(resolution_values, bins) # assigns bins to each value, makes then in conjunction for plt.bar
+df = pd.DataFrame({
+    "resolution": resolution_values,
+    "fobs": f_values,
+    "fmodel": fmodel_values,
+    "diff": difference
+})
 
+num_bins = 30
+df['res_bin'], bin_edges = pd.qcut(df['resolution'], q=num_bins, retbins=True, labels=False, duplicates='drop')
+#Quantile-based discretization function.
+#Discretize variable into equal-sized buckets based quantiles
+"""
+bin_edges  [ 2.08000004  2.10467417  2.13006903  2.15654932  2.18413277  2.21321401
+  2.24379646  2.27625119  2.31056444  2.347009    2.38571566  2.42747752
+  2.47208242  2.5201006   2.57206988  2.62837804  2.69008766  2.75792086
+  2.83328787  2.91715925  3.01228758  3.12098199  3.24690682  3.39638399
+  3.57674719  3.80357712  4.10044342  4.51921889  5.1842151   6.55114551
+ 33.63764466]
+"""
 
-binned_means = []
-
-for i in range(1, len(bins)):
-    values_in_bin = difference_f_values[bin_indices == i] # selects all elements from difference_f_values that are in bin i
+binned_means = np.array([])
+weights = np.array([])
+binned_numerators = [] # these arrays are for verification of Rwork value
+binned_denominators = []
+for i in range(num_bins):
+    bin_df = df[df['res_bin'] == i]
+    # selects all rows from the DataFrame df where the value in the 'res_bin' column is equal to i.
+    # res_bin has all of the bins, so this extracts all the values in that bin and puts it into bin_df
     
-    if np.any(bin_indices == i): #np.any checks if there is at least one value assigned to bin i
-        mean_value = values_in_bin.mean() # we calculate the mean of those values in that bin
-    else:
-        mean_value = 0    #alternate case if they are outside a bin, usually just a fallback
-    binned_means.append(mean_value) # collecting it in an array
+    numerator = bin_df['diff'].sum()
+    denominator = bin_df['fobs'].abs().sum()
+    binned_denominators.append(denominator)
+    binned_numerators.append(numerator)
+    weight = len(bin_df) / len(df)
+    # the weight is calculated as a proportion of the numbers that are in the bin over the length of the entire
+    # dataframe
+    weights = np.append(weights, weight)
+    mean_value = (numerator / denominator) 
+#    binned_means.append(mean_value)
+    binned_means = np.append(binned_means, mean_value)
+# bin width = difference between bin edges
+bin_widths = np.diff(bin_edges)
+# the widths are calculated from the difference between each bin. Since there is a large gap between 33 and 6, 
+# it ends up being the biggest bin. This means that entire bin contributes the same amount to the total Rwork value
+# as just one bin.
+bin_starts = bin_edges[:-1]
 
-# Plot
+
+rwork_direct = df['diff'].sum() / df['fobs'].abs().sum()
+
+rwork_from_bins = np.sum(binned_numerators) / np.sum(binned_denominators)
+
+print("Rwork (direct):", rwork_direct)
+print("Rwork (from bins):", rwork_from_bins)
+
 plt.figure(figsize=(10, 4))
-plt.bar(bins[:-1], binned_means, width=np.diff(bins), align='edge',
-        color='skyblue', edgecolor='black') # reverse bins because we are reversing the xaxis
-# np.diff computes step sizes 
-plt.xlabel('Resolution ')
+plt.bar(bin_starts, binned_means, width=bin_widths, align='edge',
+        color='skyblue', edgecolor='black')
+plt.xlabel('Resolution')
 plt.ylabel('Mean Rwork')
-plt.title('Binned Relative Differences vs Resolution')
-plt.gca().invert_xaxis()  
+plt.title('Binned Rwork with Proportional Resolution Bins')
+plt.gca().invert_xaxis()
 plt.tight_layout()
+plt.show()
 
 
 
@@ -215,29 +251,46 @@ for i in range(len(fobs_simulations)):
     mtz_dataset = new_miller_array.as_mtz_dataset(column_root_label="Fobs_perturbed")
     mtz_dataset.mtz_object().write("output"+ str(i+1)+".mtz")
 """
-fobs_binned_means = []
 
-for i in range(1, len(bins)):
-    values_in_bin = fobs_simulations[0][bin_indices == i] # selects all elements from difference_f_values that are in bin i
-    
-    if np.any(bin_indices == i): #np.any checks if there is at least one value assigned to bin i
-        mean_value = values_in_bin.mean() # we calculate the mean of those values in that bin
-    else:
-        mean_value = 0    #alternate case if they are outside a bin
-    fobs_binned_means.append(mean_value) # collecting it in an array
 
-# Plot
+
+
+sigma_over_f = pd.DataFrame({
+    "resolution": resolution_values,
+    "fobs": f_values,
+    "sigf": sigf_values,
+    "sigmaoverf": sigf_values/f_values
+})
+
+num_bins = 30
+sigma_over_f['res_bin'], bin_edges = pd.qcut(sigma_over_f['resolution'], q=num_bins, retbins=True, labels=False, duplicates='drop')
+
+binned_means = np.array([])
+weights = np.array([])
+binned_numerators = []
+binned_denominators = []
+for i in range(num_bins):
+    bin_df = sigma_over_f[sigma_over_f['res_bin'] == i]
+
+    binned_denominators.append(denominator)
+    binned_numerators.append(numerator)
+    weight = len(bin_df) / len(sigma_over_f)
+    weights = np.append(weights, weight)
+    mean_value = np.mean(bin_df["sigmaoverf"])
+    binned_means = np.append(binned_means, mean_value)
+
+bin_widths = np.diff(bin_edges)
+bin_starts = bin_edges[:-1]
+
 plt.figure(figsize=(10, 4))
-plt.bar(bins[:-1], fobs_binned_means, width=np.diff(bins), align='edge',
-        color='skyblue', edgecolor='black') # reverse bins because we are reversing the xaxis
-# np.diff computes step sizes 
+plt.bar(bin_starts, binned_means, width=bin_widths, align='edge',
+        color='skyblue', edgecolor='black')
 plt.xlabel('Resolution ')
 plt.ylabel('Fobs +/- SigF')
 plt.title('Binned Resolution vs Fobs +/- SigF')
 plt.gca().invert_xaxis()  
 plt.tight_layout()
 plt.show()
-
 
 
 

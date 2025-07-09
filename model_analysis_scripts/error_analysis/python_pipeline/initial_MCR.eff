@@ -1,0 +1,128 @@
+refinement {
+  crystal_symmetry {
+    unit_cell = 83.0818 119.777 123.21 90 91.7319 90
+    space_group = "P 1 21 1"
+  }
+  input {
+    pdb {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Refine_4/MCR_REV_refine_4-coot-0.pdb"
+    }
+    xray_data {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Refine_4/MCR_REV_refine_4.mtz"
+      labels = "I-obs,SIGI-obs"
+      r_free_flags {
+        file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Chris_1.19/Runs44_53_refine_data (3).mtz"
+        label = "R-free-flags"
+        test_flag_value = 1
+      }
+    }
+    monomers {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/dya.ligands.cif"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/COM.cif"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/tp7_new.cif"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/F43.cif"
+    }
+    sequence {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/rcsb_pdb_3M1V.fasta"
+    }
+  }
+  output {
+    prefix = "MCR_REV_refine"
+    serial = 5
+    serial_format = "%d"
+    write_final_geo_file = True
+    write_def_file = False
+    write_reflection_cif_file = True
+    write_maps = True
+  }
+  electron_density_maps {
+    map_coefficients {
+      map_type = "2mFo-DFc"
+      mtz_label_amplitudes = "2FOFCWT"
+      mtz_label_phases = "PH2FOFCWT"
+      fill_missing_f_obs = True
+    }
+    map_coefficients {
+      map_type = "2mFo-DFc"
+      mtz_label_amplitudes = "2FOFCWT_no_fill"
+      mtz_label_phases = "PH2FOFCWT_no_fill"
+    }
+    map_coefficients {
+      map_type = "mFo-DFc"
+      mtz_label_amplitudes = "FOFCWT"
+      mtz_label_phases = "PHFOFCWT"
+    }
+    map_coefficients {
+      map_type = "anomalous"
+      mtz_label_amplitudes = "ANOM"
+      mtz_label_phases = "PHANOM"
+    }
+  }
+  main {
+    number_of_macro_cycles = 5
+    nproc = 7
+  }
+  fake_f_obs {
+    mask {
+      solvent_radius = 1.1
+      grid_step_factor = None
+      mean_shift_for_mask_update = 0.1
+    }
+  }
+  hydrogens {
+    refine = individual *riding Auto
+  }
+  pdb_interpretation {
+    restraints_library {
+      cis_pro_eh99 = True
+    }
+    automatic_linking {
+      link_metals = False
+      link_carbohydrates = False
+      link_ligands = False
+    }
+  }
+  geometry_restraints.edits {
+    bond {
+      atom_selection_1 = name NI and chain A and resname F43 and resseq 1
+      atom_selection_2 = name S1 and chain a and resname COM and resseq 554
+      distance_ideal = 2.48
+      sigma = 0.4
+    }
+    bond {
+      atom_selection_1 = name NI and chain a and resname F43 and resseq 552
+      atom_selection_2 = name S1 and chain A and resname COM and resseq 554
+      distance_ideal = 2.52
+      sigma = 0.4
+    }
+    bond {
+      atom_selection_1 = name NI and chain A and resname F43 and resseq 1
+      atom_selection_2 = name OE1 and chain A and resname GLN and resseq 147
+      distance_ideal = 2.3
+      sigma = 0.5
+    }
+    bond {
+      atom_selection_1 = name NI and chain a and resname F43 and resseq 552
+      atom_selection_2 = name OE1 and chain a and resname GLN and resseq 147
+      distance_ideal = 2.3
+      sigma = 0.5
+    }
+  }
+  mask {
+    solvent_radius = 1.1
+    grid_step_factor = None
+    mean_shift_for_mask_update = 0.1
+  }
+  target_weights {
+    optimize_xyz_weight = True
+    optimize_adp_weight = True
+  }
+  gui {
+    base_output_dir = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION"
+    tmp_dir = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/.phenix/tmp"
+    notify_email = "mdasgupta@lbl.gov"
+    skip_kinemage = True
+    phil_file = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/MCR_Ni_S1_COM.edits"
+    phil_file = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/MCR_Ni_Q147.edits"
+  }
+}
