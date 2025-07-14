@@ -1,0 +1,593 @@
+# electronic Ligand Builder and Optimisation Workbench (eLBOW)
+#   - a module of PHENIX
+#   - file written: Mon Jul 12 14:20:14 2021
+#
+#   Inital geometry file: a 277 line input string
+#   CSD Mogul values: True
+#   Random seed: 3628800
+#   SMILES string: C[C@]1(CC(N)=O)[C@H](CCC(O)=O)[C@@H]2C[C@]34NC(=O)C[C@@]3(C)[C@H](CCC(O)=O)C5=N4|[Ni+]|67|N2=C1C[C@H]8N|6=C9[C@@H](CCC(=O)C9=C%10[C@@H](CCC(O)=O)[C@H](CC(O)=O)C(=C5)[N@@]7%10)[C@@H]8CC(O)=O
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+F43        F43 'None                     ' ligand 113 62 .
+#
+data_comp_F43
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.partial_charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+F43        NI      NI  NI     1    .      30.2690   31.5730   -6.6650
+F43         NA     N   NR5    0    .      31.4390   32.6190   -8.0650
+F43         CHA    C   CH2    0    .      31.5590   30.7180   -9.5750
+F43         C1A    C   CR5    0    .      31.9730   32.0550   -9.0780
+F43         C2A    C   CR5    0    .      33.1470   32.8110   -9.6740
+F43         C3A    C   CR15   0    .      33.4450   33.8320   -8.5490
+F43         C4A    C   CR15   0    .      32.0320   33.9850   -7.9570
+F43         C5A    C   CH2    0    .      32.6850   33.5160  -10.9910
+F43         C6A    C   C      0    .      33.8140   34.3140  -11.6440
+F43         O7A    O   O      0    .      34.6950   33.7440  -12.3070
+F43         N8A    N   NH2    0    .      33.8080   35.6070  -11.4660
+F43         C9A    C   CH3    0    .      34.2910   31.8030   -9.9660
+F43         CAA    C   CH2    0    .      34.4780   33.3870   -7.4850
+F43         CBA    C   CH2    0    .      35.9420   33.4360   -7.9690
+F43         CCA    C   C      0    .      36.8380   34.0720   -6.9230
+F43         ODA    O   OH1    0    .      37.4660   35.1020   -7.2660
+F43         OEA    O   O      0    .      36.9090   33.5540   -5.7930
+F43         NB     N   NR5    0    .      29.9390   33.3970   -5.7030
+F43         CHB    C   CH2    0    .      31.9100   34.5800   -6.5600
+F43         C1B    C   CR5    0    .      30.4420   34.7400   -6.1180
+F43         C2B    C   CR5    0    .      30.1880   35.6640   -4.8940
+F43         C3B    C   CR15   0    .      29.9810   34.7170   -3.7310
+F43         C4B    C   CR5    0    .      29.5710   33.4410   -4.4610
+F43         N5B    N   NH1    0    .      29.6350   35.3650   -7.1720
+F43         C6B    C   C      0    .      28.8470   36.3520   -6.7420
+F43         O7B    O   O      0    .      28.1950   37.0910   -7.4730
+F43         C8B    C   CH2    0    .      28.8830   36.4250   -5.2360
+F43         C9B    C   CH3    0    .      31.2620   36.7460   -4.7000
+F43         CAB    C   CH2    0    .      31.2420   34.4820   -2.8450
+F43         CBB    C   CH2    0    .      31.0620   33.4260   -1.7350
+F43         CCB    C   C      0    .      32.1570   33.5570   -0.6870
+F43         ODB    O   O      0    .      32.3230   34.7040   -0.2120
+F43         OEB    O   OH1    0    .      32.7800   32.5190   -0.3400
+F43         NC     N   N      0    .      29.3840   30.4720   -5.1650
+F43         CHC    C   C1     0    .      28.9390   32.3380   -3.7090
+F43         C1C    C   CR5    0    .      28.8470   31.0510   -4.0460
+F43         C2C    C   CR15   0    .      28.1680   30.0540   -3.1720
+F43         C3C    C   CR15   0    .      28.6780   28.7140   -3.6800
+F43         C4C    C   CR56   0    .      29.2340   29.1000   -5.0530
+F43         C5C    C   CH2    0    .      26.6390   30.2160   -3.3010
+F43         C6C    C   C      0    .      25.9490   29.2670   -2.3410
+F43         O7C    O   O      0    .      26.1640   29.4600   -1.1120
+F43         O8C    O   OH1    0    .      25.1910   28.3470   -2.7780
+F43         C8C    C   CH2    0    .      29.8100   28.0940   -2.8360
+F43         C9C    C   CH2    0    .      29.2690   27.5610   -1.5140
+F43         CAC    C   C      0    .      30.3330   26.8890   -0.6290
+F43         OBC    O   OH1    0    .      31.5400   26.9440   -0.9350
+F43         OCC    O   O      0    .      29.9660   26.3380    0.4220
+F43         ND     N   NR6    0    .      30.9040   29.7630   -7.3830
+F43         CHD    C   CR6    0    .      29.7120   28.1800   -5.9730
+F43         C5D    C   CH2    0    .      30.6580   26.1870   -7.9550
+F43         C6D    C   CH2    0    .      30.1070   25.7140   -6.6050
+F43         C7D    C   C      0    .      29.3150   26.7560   -5.8680
+F43         O8D    O   O      0    .      28.4030   26.3360   -5.1570
+F43         C9D    C   CH2    0    .      33.1840   27.7910   -9.5690
+F43         CAD    C   C      0    .      33.1490   26.4900  -10.3380
+F43         OBD    O   O      0    .      32.0470   26.1140  -10.8410
+F43         OCD    O   OH1    0    .      34.2070   25.7900  -10.4180
+F43         C1D    C   CR6    0    .      30.6090   28.5190   -6.9890
+F43         C2D    C   CH1    0    .      31.4170   27.4860   -7.7500
+F43         C3D    C   CH1    0    .      31.8500   28.2370   -8.9950
+F43         C4D    C   CH1    0    .      31.8810   29.6900   -8.4860
+F43         H4A    H   HCR5   0    .      31.4710   34.6420   -8.6370
+F43        HHA1    H   HCH2   0    .      30.4790   30.7150   -9.7840
+F43        HHA2    H   HCH2   0    .      32.1110   30.4740  -10.4940
+F43         H4D    H   HCH1   0    .      32.8870   29.9000   -8.0940
+F43         H3A    H   HCR5   0    .      33.7640   34.7860   -8.9940
+F43        H5A1    H   HCH2   0    .      32.3360   32.7500  -11.7000
+F43        H5A2    H   HCH2   0    .      31.8570   34.2010  -10.7550
+F43        H9A1    H   HCH3   0    .      35.1500   32.3370  -10.3990
+F43        H9A2    H   HCH3   0    .      34.5970   31.3150   -9.0290
+F43        H9A3    H   HCH3   0    .      33.9370   31.0420  -10.6770
+F43        HAA1    H   HCH2   0    .      34.3810   34.0480   -6.6110
+F43        HAA2    H   HCH2   0    .      34.2460   32.3530   -7.1900
+F43        HHB1    H   HCH2   0    .      32.4240   33.9180   -5.8470
+F43        HHB2    H   HCH2   0    .      32.3910   35.5690   -6.5540
+F43        H8A1    H   HNH2   0    .      34.5290   36.1710  -11.8700
+F43        H8A2    H   HNH2   0    .      33.0830   36.0340  -10.9260
+F43        HBA1    H   HCH2   0    .      36.2900   32.4110   -8.1660
+F43        HBA2    H   HCH2   0    .      35.9950   34.0260   -8.8960
+F43         HDA    H   HOH1   0    .      37.9910   35.4110   -6.5370
+F43         H5B    H   HNH1   0    .      29.6720   35.0760   -8.1290
+F43         H3B    H   HCR5   0    .      29.1520   35.0700   -3.1010
+F43        H8B1    H   HCH2   0    .      28.0060   35.9300   -4.7930
+F43        H8B2    H   HCH2   0    .      28.9290   37.4680   -4.8900
+F43        H9B1    H   HCH3   0    .      31.0140   37.3560   -3.8190
+F43        H9B2    H   HCH3   0    .      32.2410   36.2680   -4.5500
+F43        H9B3    H   HCH3   0    .      31.3000   37.3890   -5.5920
+F43        HAB1    H   HCH2   0    .      32.0640   34.1550   -3.4990
+F43        HAB2    H   HCH2   0    .      31.5090   35.4370   -2.3690
+F43         HHC    H   H      0    .      28.4930   32.6090   -2.7630
+F43        HBB1    H   HCH2   0    .      30.0830   33.5700   -1.2550
+F43        HBB2    H   HCH2   0    .      31.1070   32.4220   -2.1810
+F43         HEB    H   HOH1   0    .      33.4030   32.7360    0.3440
+F43         H2C    H   HCR5   0    .      28.4680   30.1970   -2.1230
+F43         H3C    H   HCR5   0    .      27.8480   28.0000   -3.7880
+F43        H5C1    H   HCH2   0    .      26.3580   31.2520   -3.0590
+F43        H5C2    H   HCH2   0    .      26.3310   29.9840   -4.3310
+F43        H8C1    H   HCH2   0    .      30.2680   27.2670   -3.3980
+F43        H8C2    H   HCH2   0    .      30.5700   28.8630   -2.6310
+F43         H8C    H   HOH1   0    .      24.8340   27.8560   -2.0470
+F43        H9C1    H   HCH2   0    .      28.8340   28.4020   -0.9540
+F43        H9C2    H   HCH2   0    .      28.4850   26.8220   -1.7340
+F43         HBC    H   HOH1   0    .      32.0580   26.5190   -0.2610
+F43        H5D1    H   HCH2   0    .      31.3360   25.4240   -8.3650
+F43        H5D2    H   HCH2   0    .      29.8260   26.3520   -8.6560
+F43        H6D1    H   HCH2   0    .      29.4550   24.8460   -6.7830
+F43        H6D2    H   HCH2   0    .      30.9550   25.4120   -5.9720
+F43         H2D    H   HCH1   0    .      32.3180   27.2610   -7.1610
+F43        H9D1    H   HCH2   0    .      33.8920   27.6750   -8.7350
+F43        H9D2    H   HCH2   0    .      33.5430   28.5780  -10.2480
+F43         H3D    H   HCH1   0    .      31.0720   28.1430   -9.7670
+F43         HCD    H   HOH1   0    .      34.0220   24.9890  -10.8940
+#
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+_chem_comp_bond.value_dist_neutron
+F43  NI       NA    single        2.103 0.200     2.103
+F43  NI       NB    single        2.088 0.200     2.088
+F43  NI       NC    single        2.060 0.200     2.060
+F43  NI       ND    single        2.048 0.200     2.048
+F43   NA      C1A   double        1.276 0.200     1.276
+F43   NA      C4A   single        1.493 0.200     1.493
+F43   CHA     C1A   single        1.469 0.200     1.469
+F43   CHA     C4D   single        1.532 0.200     1.532
+F43   C1A     C2A   single        1.518 0.200     1.518
+F43   C2A     C3A   single        1.541 0.200     1.541
+F43   C2A     C5A   single        1.542 0.200     1.542
+F43   C2A     C9A   single        1.541 0.200     1.541
+F43   C3A     C4A   single        1.540 0.200     1.540
+F43   C3A     CAA   single        1.527 0.200     1.527
+F43   C4A     CHB   single        1.523 0.200     1.523
+F43   C5A     C6A   single        1.514 0.200     1.514
+F43   C6A     O7A   double        1.235 0.200     1.235
+F43   C6A     N8A   single        1.324 0.200     1.324
+F43   CAA     CBA   single        1.528 0.200     1.528
+F43   CBA     CCA   single        1.501 0.200     1.501
+F43   CCA     ODA   single        1.308 0.200     1.308
+F43   CCA     OEA   double        1.214 0.200     1.214
+F43   NB      C1B   single        1.493 0.200     1.493
+F43   NB      C4B   double        1.296 0.200     1.296
+F43   CHB     C1B   single        1.541 0.200     1.541
+F43   C1B     C2B   single        1.554 0.200     1.554
+F43   C1B     N5B   single        1.467 0.200     1.467
+F43   C2B     C3B   single        1.568 0.200     1.568
+F43   C2B     C8B   single        1.538 0.200     1.538
+F43   C2B     C9B   single        1.537 0.200     1.537
+F43   C3B     C4B   single        1.526 0.200     1.526
+F43   C3B     CAB   single        1.538 0.200     1.538
+F43   C4B     CHC   single        1.409 0.200     1.409
+F43   N5B     C6B   single        1.339 0.200     1.339
+F43   C6B     O7B   double        1.228 0.200     1.228
+F43   C6B     C8B   single        1.508 0.200     1.508
+F43   CAB     CBB   single        1.528 0.200     1.528
+F43   CBB     CCB   single        1.501 0.200     1.501
+F43   CCB     ODB   double        1.214 0.200     1.214
+F43   CCB     OEB   single        1.308 0.200     1.308
+F43   NC      C1C   single        1.370 0.200     1.370
+F43   NC      C4C   single        1.385 0.200     1.385
+F43   CHC     C1C   double        1.359 0.200     1.359
+F43   C1C     C2C   single        1.503 0.200     1.503
+F43   C2C     C3C   single        1.548 0.200     1.548
+F43   C2C     C5C   single        1.530 0.200     1.530
+F43   C3C     C4C   single        1.502 0.200     1.502
+F43   C3C     C8C   single        1.536 0.200     1.536
+F43   C4C     CHD   double        1.392 0.200     1.392
+F43   C5C     C6C   single        1.507 0.200     1.507
+F43   C6C     O7C   double        1.214 0.200     1.214
+F43   C6C     O8C   single        1.308 0.200     1.308
+F43   C8C     C9C   single        1.528 0.200     1.528
+F43   C9C     CAC   single        1.501 0.200     1.501
+F43   CAC     OBC   single        1.308 0.200     1.308
+F43   CAC     OCC   double        1.214 0.200     1.214
+F43   ND      C1D   double        1.338 0.200     1.338
+F43   ND      C4D   single        1.475 0.200     1.475
+F43   CHD     C7D   single        1.459 0.200     1.459
+F43   CHD     C1D   single        1.397 0.200     1.397
+F43   C5D     C6D   single        1.526 0.200     1.526
+F43   C5D     C2D   single        1.533 0.200     1.533
+F43   C6D     C7D   single        1.504 0.200     1.504
+F43   C7D     O8D   double        1.225 0.200     1.225
+F43   C9D     CAD   single        1.507 0.200     1.507
+F43   C9D     C3D   single        1.530 0.200     1.530
+F43   CAD     OBD   double        1.214 0.200     1.214
+F43   CAD     OCD   single        1.308 0.200     1.308
+F43   C1D     C2D   single        1.516 0.200     1.516
+F43   C2D     C3D   single        1.541 0.200     1.541
+F43   C3D     C4D   single        1.540 0.200     1.540
+F43   C4A     H4A   single        0.970 0.200     1.090
+F43   CHA    HHA1   single        0.970 0.200     1.090
+F43   CHA    HHA2   single        0.970 0.200     1.090
+F43   C4D     H4D   single        0.970 0.200     1.090
+F43   C3A     H3A   single        0.970 0.200     1.090
+F43   C5A    H5A1   single        0.970 0.200     1.090
+F43   C5A    H5A2   single        0.970 0.200     1.090
+F43   C9A    H9A1   single        0.970 0.200     1.090
+F43   C9A    H9A2   single        0.970 0.200     1.090
+F43   C9A    H9A3   single        0.970 0.200     1.090
+F43   CAA    HAA1   single        0.970 0.200     1.090
+F43   CAA    HAA2   single        0.970 0.200     1.090
+F43   CHB    HHB1   single        0.970 0.200     1.090
+F43   CHB    HHB2   single        0.970 0.200     1.090
+F43   N8A    H8A1   single        0.860 0.200     1.020
+F43   N8A    H8A2   single        0.860 0.200     1.020
+F43   CBA    HBA1   single        0.970 0.200     1.090
+F43   CBA    HBA2   single        0.970 0.200     1.090
+F43   ODA     HDA   single        0.850 0.200     0.980
+F43   N5B     H5B   single        0.860 0.200     1.020
+F43   C3B     H3B   single        0.970 0.200     1.090
+F43   C8B    H8B1   single        0.970 0.200     1.090
+F43   C8B    H8B2   single        0.970 0.200     1.090
+F43   C9B    H9B1   single        0.970 0.200     1.090
+F43   C9B    H9B2   single        0.970 0.200     1.090
+F43   C9B    H9B3   single        0.970 0.200     1.090
+F43   CAB    HAB1   single        0.970 0.200     1.090
+F43   CAB    HAB2   single        0.970 0.200     1.090
+F43   CHC     HHC   single        0.930 0.200     1.080
+F43   CBB    HBB1   single        0.970 0.200     1.090
+F43   CBB    HBB2   single        0.970 0.200     1.090
+F43   OEB     HEB   single        0.850 0.200     0.980
+F43   C2C     H2C   single        0.970 0.200     1.090
+F43   C3C     H3C   single        0.970 0.200     1.090
+F43   C5C    H5C1   single        0.970 0.200     1.090
+F43   C5C    H5C2   single        0.970 0.200     1.090
+F43   C8C    H8C1   single        0.970 0.200     1.090
+F43   C8C    H8C2   single        0.970 0.200     1.090
+F43   O8C     H8C   single        0.850 0.200     0.980
+F43   C9C    H9C1   single        0.970 0.200     1.090
+F43   C9C    H9C2   single        0.970 0.200     1.090
+F43   OBC     HBC   single        0.850 0.200     0.980
+F43   C5D    H5D1   single        0.970 0.200     1.090
+F43   C5D    H5D2   single        0.970 0.200     1.090
+F43   C6D    H6D1   single        0.970 0.200     1.090
+F43   C6D    H6D2   single        0.970 0.200     1.090
+F43   C2D     H2D   single        0.970 0.200     1.090
+F43   C9D    H9D1   single        0.970 0.200     1.090
+F43   C9D    H9D2   single        0.970 0.200     1.090
+F43   C3D     H3D   single        0.970 0.200     1.090
+F43   OCD     HCD   single        0.850 0.200     0.980
+#
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+F43   ND     NI       NC           85.19 20.000
+F43   ND     NI       NB          169.21 20.000
+F43   NC     NI       NB           93.64 20.000
+F43   ND     NI       NA           91.93 20.000
+F43   NC     NI       NA          171.62 20.000
+F43   NB     NI       NA           87.72 20.000
+F43   C4A     NA      C1A         107.19 20.000
+F43   C4A     NA     NI           128.89 20.000
+F43   C1A     NA     NI           122.77 20.000
+F43  HHA2     CHA    HHA1         109.48 20.000
+F43  HHA2     CHA     C4D         109.86 20.000
+F43  HHA1     CHA     C4D         109.85 20.000
+F43  HHA2     CHA     C1A         109.85 20.000
+F43  HHA1     CHA     C1A         109.86 20.000
+F43   C4D     CHA     C1A         107.92 20.000
+F43   C2A     C1A     CHA         122.17 20.000
+F43   C2A     C1A     NA          114.52 20.000
+F43   CHA     C1A     NA          123.14 20.000
+F43   C9A     C2A     C5A         108.42 20.000
+F43   C9A     C2A     C3A         113.22 20.000
+F43   C5A     C2A     C3A         111.81 20.000
+F43   C9A     C2A     C1A         108.68 20.000
+F43   C5A     C2A     C1A         109.07 20.000
+F43   C3A     C2A     C1A         101.07 20.000
+F43   H3A     C3A     CAA         121.22 20.000
+F43   H3A     C3A     C4A         121.22 20.000
+F43   CAA     C3A     C4A         112.13 20.000
+F43   H3A     C3A     C2A         121.22 20.000
+F43   CAA     C3A     C2A         117.57 20.000
+F43   C4A     C3A     C2A          99.69 20.000
+F43   H4A     C4A     CHB         107.03 20.000
+F43   H4A     C4A     C3A         106.85 20.000
+F43   CHB     C4A     C3A         117.71 20.000
+F43   H4A     C4A     NA          107.42 20.000
+F43   CHB     C4A     NA          113.07 20.000
+F43   C3A     C4A     NA          104.23 20.000
+F43  H5A2     C5A    H5A1         109.44 20.000
+F43  H5A2     C5A     C6A         108.81 20.000
+F43  H5A1     C5A     C6A         108.80 20.000
+F43  H5A2     C5A     C2A         108.81 20.000
+F43  H5A1     C5A     C2A         108.81 20.000
+F43   C6A     C5A     C2A         112.14 20.000
+F43   N8A     C6A     O7A         123.06 20.000
+F43   N8A     C6A     C5A         116.80 20.000
+F43   O7A     C6A     C5A         120.76 20.000
+F43  H8A2     N8A    H8A1         119.99 20.000
+F43  H8A2     N8A     C6A         120.01 20.000
+F43  H8A1     N8A     C6A         120.00 20.000
+F43  H9A3     C9A    H9A2         109.47 20.000
+F43  H9A3     C9A    H9A1         109.43 20.000
+F43  H9A2     C9A    H9A1         109.48 20.000
+F43  H9A3     C9A     C2A         109.49 20.000
+F43  H9A2     C9A     C2A         109.44 20.000
+F43  H9A1     C9A     C2A         109.52 20.000
+F43  HAA2     CAA    HAA1         109.46 20.000
+F43  HAA2     CAA     CBA         108.31 20.000
+F43  HAA1     CAA     CBA         108.29 20.000
+F43  HAA2     CAA     C3A         108.29 20.000
+F43  HAA1     CAA     C3A         108.33 20.000
+F43   CBA     CAA     C3A         113.92 20.000
+F43  HBA2     CBA    HBA1         109.48 20.000
+F43  HBA2     CBA     CCA         109.13 20.000
+F43  HBA1     CBA     CCA         109.10 20.000
+F43  HBA2     CBA     CAA         109.09 20.000
+F43  HBA1     CBA     CAA         109.07 20.000
+F43   CCA     CBA     CAA         113.01 20.000
+F43   OEA     CCA     ODA         123.57 20.000
+F43   OEA     CCA     CBA         123.44 20.000
+F43   ODA     CCA     CBA         113.59 20.000
+F43   HDA     ODA     CCA         109.51 20.000
+F43   C4B     NB      C1B         109.36 20.000
+F43   C4B     NB     NI           121.06 20.000
+F43   C1B     NB     NI           127.19 20.000
+F43  HHB2     CHB    HHB1         109.46 20.000
+F43  HHB2     CHB     C1B         108.76 20.000
+F43  HHB1     CHB     C1B         108.75 20.000
+F43  HHB2     CHB     C4A         108.74 20.000
+F43  HHB1     CHB     C4A         108.77 20.000
+F43   C1B     CHB     C4A         112.32 20.000
+F43   N5B     C1B     C2B         102.86 20.000
+F43   N5B     C1B     CHB         111.23 20.000
+F43   C2B     C1B     CHB         116.30 20.000
+F43   N5B     C1B     NB          113.43 20.000
+F43   C2B     C1B     NB          105.12 20.000
+F43   CHB     C1B     NB          107.89 20.000
+F43   C9B     C2B     C8B         110.21 20.000
+F43   C9B     C2B     C3B         111.81 20.000
+F43   C8B     C2B     C3B         111.21 20.000
+F43   C9B     C2B     C1B         113.81 20.000
+F43   C8B     C2B     C1B         104.82 20.000
+F43   C3B     C2B     C1B         104.80 20.000
+F43   H3B     C3B     CAB         109.43 20.000
+F43   H3B     C3B     C4B         109.87 20.000
+F43   CAB     C3B     C4B         111.29 20.000
+F43   H3B     C3B     C2B         110.03 20.000
+F43   CAB     C3B     C2B         114.85 20.000
+F43   C4B     C3B     C2B         101.08 20.000
+F43   CHC     C4B     C3B         119.72 20.000
+F43   CHC     C4B     NB          125.73 20.000
+F43   C3B     C4B     NB          114.23 20.000
+F43   H5B     N5B     C6B         122.95 20.000
+F43   H5B     N5B     C1B         122.94 20.000
+F43   C6B     N5B     C1B         114.11 20.000
+F43   C8B     C6B     O7B         126.68 20.000
+F43   C8B     C6B     N5B         108.23 20.000
+F43   O7B     C6B     N5B         125.24 20.000
+F43  H8B2     C8B    H8B1         109.47 20.000
+F43  H8B2     C8B     C6B         111.16 20.000
+F43  H8B1     C8B     C6B         111.18 20.000
+F43  H8B2     C8B     C2B         111.18 20.000
+F43  H8B1     C8B     C2B         111.20 20.000
+F43   C6B     C8B     C2B         102.52 20.000
+F43  H9B3     C9B    H9B2         109.50 20.000
+F43  H9B3     C9B    H9B1         109.45 20.000
+F43  H9B2     C9B    H9B1         109.42 20.000
+F43  H9B3     C9B     C2B         109.47 20.000
+F43  H9B2     C9B     C2B         109.47 20.000
+F43  H9B1     C9B     C2B         109.51 20.000
+F43  HAB2     CAB    HAB1         109.51 20.000
+F43  HAB2     CAB     CBB         108.14 20.000
+F43  HAB1     CAB     CBB         108.15 20.000
+F43  HAB2     CAB     C3B         108.14 20.000
+F43  HAB1     CAB     C3B         108.14 20.000
+F43   CBB     CAB     C3B         113.46 20.000
+F43  HBB2     CBB    HBB1         109.45 20.000
+F43  HBB2     CBB     CCB         109.18 20.000
+F43  HBB1     CBB     CCB         109.19 20.000
+F43  HBB2     CBB     CAB         109.17 20.000
+F43  HBB1     CBB     CAB         109.16 20.000
+F43   CCB     CBB     CAB         113.01 20.000
+F43   OEB     CCB     ODB         123.57 20.000
+F43   OEB     CCB     CBB         113.59 20.000
+F43   ODB     CCB     CBB         123.44 20.000
+F43   HEB     OEB     CCB         109.54 20.000
+F43   C4C     NC      C1C         108.08 20.000
+F43   C4C     NC     NI           129.41 20.000
+F43   C1C     NC     NI           122.50 20.000
+F43   HHC     CHC     C1C         115.78 20.000
+F43   HHC     CHC     C4B         115.79 20.000
+F43   C1C     CHC     C4B         128.43 20.000
+F43   C2C     C1C     CHC         121.95 20.000
+F43   C2C     C1C     NC          112.03 20.000
+F43   CHC     C1C     NC          125.97 20.000
+F43   H2C     C2C     C5C         122.29 20.000
+F43   H2C     C2C     C3C         122.29 20.000
+F43   C5C     C2C     C3C         115.42 20.000
+F43   H2C     C2C     C1C         122.29 20.000
+F43   C5C     C2C     C1C         111.53 20.000
+F43   C3C     C2C     C1C         100.86 20.000
+F43   H3C     C3C     C8C         122.13 20.000
+F43   H3C     C3C     C4C         122.13 20.000
+F43   C8C     C3C     C4C         109.00 20.000
+F43   H3C     C3C     C2C         122.13 20.000
+F43   C8C     C3C     C2C         115.75 20.000
+F43   C4C     C3C     C2C         100.83 20.000
+F43   CHD     C4C     C3C         123.59 20.000
+F43   CHD     C4C     NC          124.51 20.000
+F43   C3C     C4C     NC          111.21 20.000
+F43  H5C2     C5C    H5C1         109.45 20.000
+F43  H5C2     C5C     C6C         109.48 20.000
+F43  H5C1     C5C     C6C         109.50 20.000
+F43  H5C2     C5C     C2C         109.49 20.000
+F43  H5C1     C5C     C2C         109.48 20.000
+F43   C6C     C5C     C2C         113.45 20.000
+F43   O8C     C6C     O7C         123.57 20.000
+F43   O8C     C6C     C5C         113.57 20.000
+F43   O7C     C6C     C5C         123.07 20.000
+F43   H8C     O8C     C6C         109.51 20.000
+F43  H8C2     C8C    H8C1         109.45 20.000
+F43  H8C2     C8C     C9C         109.14 20.000
+F43  H8C1     C8C     C9C         109.15 20.000
+F43  H8C2     C8C     C3C         109.15 20.000
+F43  H8C1     C8C     C3C         109.17 20.000
+F43   C9C     C8C     C3C         114.61 20.000
+F43  H9C2     C9C    H9C1         109.49 20.000
+F43  H9C2     C9C     CAC         108.34 20.000
+F43  H9C1     C9C     CAC         108.34 20.000
+F43  H9C2     C9C     C8C         108.33 20.000
+F43  H9C1     C9C     C8C         108.33 20.000
+F43   CAC     C9C     C8C         113.01 20.000
+F43   OCC     CAC     OBC         123.57 20.000
+F43   OCC     CAC     C9C         123.44 20.000
+F43   OBC     CAC     C9C         113.59 20.000
+F43   HBC     OBC     CAC         109.51 20.000
+F43   C4D     ND      C1D         108.68 20.000
+F43   C4D     ND     NI           120.74 20.000
+F43   C1D     ND     NI           130.55 20.000
+F43   C1D     CHD     C7D         117.17 20.000
+F43   C1D     CHD     C4C         122.89 20.000
+F43   C7D     CHD     C4C         119.89 20.000
+F43  H5D2     C5D    H5D1         109.43 20.000
+F43  H5D2     C5D     C2D         109.61 20.000
+F43  H5D1     C5D     C2D         109.61 20.000
+F43  H5D2     C5D     C6D         109.60 20.000
+F43  H5D1     C5D     C6D         109.62 20.000
+F43   C2D     C5D     C6D         111.45 20.000
+F43  H6D2     C6D    H6D1         109.47 20.000
+F43  H6D2     C6D     C7D         108.33 20.000
+F43  H6D1     C6D     C7D         108.32 20.000
+F43  H6D2     C6D     C5D         108.32 20.000
+F43  H6D1     C6D     C5D         108.30 20.000
+F43   C7D     C6D     C5D         113.55 20.000
+F43   O8D     C7D     C6D         120.88 20.000
+F43   O8D     C7D     CHD         122.84 20.000
+F43   C6D     C7D     CHD         116.68 20.000
+F43  H9D2     C9D    H9D1         109.48 20.000
+F43  H9D2     C9D     C3D         108.05 20.000
+F43  H9D1     C9D     C3D         108.04 20.000
+F43  H9D2     C9D     CAD         108.02 20.000
+F43  H9D1     C9D     CAD         108.05 20.000
+F43   C3D     C9D     CAD         113.84 20.000
+F43   OCD     CAD     OBD         123.57 20.000
+F43   OCD     CAD     C9D         113.57 20.000
+F43   OBD     CAD     C9D         123.07 20.000
+F43   HCD     OCD     CAD         109.50 20.000
+F43   C2D     C1D     CHD         122.81 20.000
+F43   C2D     C1D     ND          111.60 20.000
+F43   CHD     C1D     ND          125.55 20.000
+F43   H2D     C2D     C3D         121.81 20.000
+F43   H2D     C2D     C1D         121.81 20.000
+F43   C3D     C2D     C1D         103.10 20.000
+F43   H2D     C2D     C5D         121.81 20.000
+F43   C3D     C2D     C5D         116.39 20.000
+F43   C1D     C2D     C5D         112.60 20.000
+F43   H3D     C3D     C4D         123.03 20.000
+F43   H3D     C3D     C2D         123.03 20.000
+F43   C4D     C3D     C2D         101.63 20.000
+F43   H3D     C3D     C9D         123.03 20.000
+F43   C4D     C3D     C9D         112.60 20.000
+F43   C2D     C3D     C9D         113.95 20.000
+F43   H4D     C4D     C3D         108.44 20.000
+F43   H4D     C4D     ND          109.26 20.000
+F43   C3D     C4D     ND          106.29 20.000
+F43   H4D     C4D     CHA         108.51 20.000
+F43   C3D     C4D     CHA         113.20 20.000
+F43   ND      C4D     CHA         111.05 20.000
+#
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+F43 CONST_01      H8A1     N8A     C6A     C5A         179.69   0.0 0
+F43 CONST_02      H8A2     N8A     C6A     C5A          -0.31   0.0 0
+F43 Var_01         CHA     C1A     NA     NI            16.26  30.0 1
+F43 Var_02         C3B     C4B     NB     NI           153.06  30.0 1
+F43 Var_03         CHC     C1C     NC     NI            -7.32  30.0 1
+F43 Var_04         C3C     C4C     NC     NI           172.45  30.0 1
+F43 Var_05         CHD     C1D     ND     NI             2.64  30.0 1
+F43 Var_06         C1B     NB     NI       NA            1.42  30.0 1
+F43 Var_07         C1C     NC     NI       NA           99.45  30.0 1
+F43 Var_08         C1D     ND     NI       NA          179.13  30.0 1
+F43 Var_09         C4D     CHA     C1A     NA          -64.11  30.0 1
+F43 Var_10         NB     NI       NA      C1A        -177.12  30.0 1
+F43 Var_11         C1C     CHC     C4B     NB           13.49  30.0 1
+F43 Var_12         C8B     C6B     N5B     C1B          -7.37  30.0 1
+F43 Var_13         N5B     C6B     C8B     C2B          19.46  30.0 1
+F43 Var_14         NC      C1C     CHC     C4B           2.89  30.0 1
+F43 Var_15         C7D     CHD     C4C     NC         -170.41  30.0 1
+F43 Var_16         C6D     C7D     CHD     C4C        -163.26  30.0 1
+F43 Var_17         ND      C1D     CHD     C4C         -14.52  30.0 1
+F43 Var_18         C5D     C6D     C7D     CHD         -34.59  30.0 1
+F43 Var_19         C2D     C5D     C6D     C7D          52.27  30.0 1
+F43 Var_20         O7A     C6A     C5A     C2A          78.39  30.0 3
+F43 Var_21         CCA     CBA     CAA     C3A         134.87  30.0 3
+F43 Var_22         CCB     CBB     CAB     C3B        -163.08  30.0 3
+F43 Var_23         O7C     C6C     C5C     C2C          63.18  30.0 3
+F43 Var_24         CAC     C9C     C8C     C3C         178.36  30.0 3
+F43 Var_25         C3D     C9D     CAD     OBD          23.72  30.0 3
+F43 Var_26         ODA     CCA     CBA     CAA        -120.72  30.0 3
+F43 Var_27         ODB     CCB     CBB     CAB          51.61  30.0 3
+F43 Var_28         OBC     CAC     C9C     C8C           8.05  30.0 3
+#
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+F43 chir_01   C2A     C3A     C1A     C9A   positiv
+F43 chir_02   C3A     CAA     C4A     C2A   positiv
+F43 chir_03   C4A     NA      C3A     CHB   positiv
+F43 chir_04   C1B     N5B     CHB     C2B   negativ
+F43 chir_05   C2B     C8B     C3B     C1B   negativ
+F43 chir_06   C3B     C2B     C4B     CAB   negativ
+F43 chir_07   C2C     C1C     C3C     C5C   positiv
+F43 chir_08   C3C     C8C     C4C     C2C   positiv
+F43 chir_09   C2D     C3D     C1D     C5D   negativ
+F43 chir_10   C3D     C9D     C2D     C4D   negativ
+F43 chir_11   C4D     ND      CHA     C3D   positiv
+#
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+F43 plan-1    C5A 0.020
+F43 plan-1    C6A 0.020
+F43 plan-1    O7A 0.020
+F43 plan-1    N8A 0.020
+F43 plan-1   H8A1 0.020
+F43 plan-1   H8A2 0.020

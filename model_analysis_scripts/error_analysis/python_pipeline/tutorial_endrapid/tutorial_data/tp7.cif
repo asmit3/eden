@@ -1,0 +1,274 @@
+# electronic Ligand Builder and Optimisation Workbench (eLBOW)
+#   - a module of PHENIX
+#   - file written: Tue Oct 26 09:24:40 2021
+#
+#   Final geometry file: a 102 line input string
+#   Ligand name: "(2S,3R)-3-phosphonooxy-2-(7-sulfanylheptanoylamino)butanoic acid"
+#   Random seed: 3628800
+#   SMILES string: C[C@@H](O[P](O)(O)=O)[C@H](NC(=O)CCCCCCS)C(O)=O
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+TP7        TP7 '"(2S,3R)-3-phosphonooxy-2-(7-sulfanylheptanoylamino)butanoic acid"' ligand 40 21 .
+#
+data_comp_TP7
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.partial_charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+TP7         N      N   NH1    0    .       0.0000    0.0000    0.0000
+TP7         P      P   P      0    .       2.6651    3.4590    0.6131
+TP7         O1P    O   O      0    .       3.5437    3.9408   -0.4753
+TP7         O2P    O   OP    -1    .       3.5566    2.7313    1.7395
+TP7         O3P    O   OP    -1    .       1.8875    4.7072    1.2677
+TP7         O4P    O   O2     0    .       1.5967    2.4132    0.0174
+TP7         CB     C   CH1    0    .       1.9740    1.2494   -0.7209
+TP7         C      C   C      0    .       1.9676    0.0000    1.4197
+TP7         OXT    O   OC     0    .       3.2875    0.0002    1.6649
+TP7         O      O   O     -1    .       1.1833   -0.0001    2.3390
+TP7         CA     C   CH1    0    .       1.4647    0.0000    0.0000
+TP7         CG     C   CH3    0    .       1.3637    1.3146   -2.1224
+TP7         O1     O   O      0    .      -0.0673   -2.2092    0.1933
+TP7         C1     C   C      0    .      -0.6735   -1.1626    0.1023
+TP7         C2     C   CH2    0    .      -2.1807   -1.1636    0.1025
+TP7         C3     C   CH2    0    .      -2.6901   -2.6007    0.2286
+TP7         C4     C   CH2    0    .      -4.2206   -2.6012    0.2297
+TP7         C5     C   CH2    0    .      -4.7297   -4.0386    0.3549
+TP7         C6     C   CH2    0    .      -6.2594   -4.0385    0.3560
+TP7         C7     C   CH2    0    .      -6.7685   -5.4759    0.4812
+TP7         S7     S   S2     0    .      -8.5827   -5.4762    0.4823
+TP7         H      H   HNH1   0    .      -0.4999    0.8667   -0.0241
+TP7         HA     H   HCH1   0    .       1.8259   -0.8843   -0.5110
+TP7         HB     H   HCH1   0    .       3.0536    1.2059   -0.7992
+TP7        HG1C    H   HCH3   0    .       0.3758    1.7557   -2.0659
+TP7        HG2C    H   HCH3   0    .       1.2896    0.3141   -2.5310
+TP7        HG3C    H   HCH3   0    .       1.9935    1.9204   -2.7627
+TP7        H21C    H   HCH2   0    .      -2.5420   -0.5778    0.9391
+TP7        H22C    H   HCH2   0    .      -2.5422   -0.7323   -0.8232
+TP7        H31C    H   HCH2   0    .      -2.3294   -3.1864   -0.6083
+TP7        H32C    H   HCH2   0    .      -2.3282   -3.0322    1.1540
+TP7        H41C    H   HCH2   0    .      -4.5826   -2.1691   -0.6954
+TP7        H42C    H   HCH2   0    .      -4.5813   -2.0161    1.0670
+TP7        H51C    H   HCH2   0    .      -4.3692   -4.6238   -0.4824
+TP7        H52C    H   HCH2   0    .      -4.3679   -4.4707    1.2801
+TP7        H61C    H   HCH2   0    .      -6.6213   -3.6064   -0.5691
+TP7        H62C    H   HCH2   0    .      -6.6200   -3.4533    1.1934
+TP7        H71C    H   HCH2   0    .      -6.4068   -5.9079    1.4065
+TP7        H72C    H   HCH2   0    .      -6.4078   -6.0611   -0.3560
+TP7         H7     H   HSH1   0    .      -9.0250   -6.7232    0.5886
+#
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+TP7   N       CA    single        1.465 0.020
+TP7   N       C1    single        1.348 0.020
+TP7   P       O1P   deloc         1.479 0.020
+TP7   P       O2P   deloc         1.610 0.020
+TP7   P       O3P   deloc         1.610 0.020
+TP7   P       O4P   single        1.609 0.020
+TP7   O4P     CB    single        1.429 0.020
+TP7   CB      CA    single        1.530 0.020
+TP7   CB      CG    single        1.530 0.020
+TP7   C       OXT   deloc         1.343 0.020
+TP7   C       O     deloc         1.208 0.020
+TP7   C       CA    single        1.506 0.020
+TP7   O1      C1    double        1.213 0.020
+TP7   C1      C2    single        1.507 0.020
+TP7   C2      C3    single        1.530 0.020
+TP7   C3      C4    single        1.530 0.020
+TP7   C4      C5    single        1.530 0.020
+TP7   C5      C6    single        1.530 0.020
+TP7   C6      C7    single        1.530 0.020
+TP7   C7      S7    single        1.814 0.020
+TP7   N       H     single        1.001 0.020
+TP7   CA      HA    single        1.083 0.020
+TP7   CB      HB    single        1.083 0.020
+TP7   CG     HG1C   single        1.083 0.020
+TP7   CG     HG2C   single        1.083 0.020
+TP7   CG     HG3C   single        1.083 0.020
+TP7   C2     H21C   single        1.083 0.020
+TP7   C2     H22C   single        1.083 0.020
+TP7   C3     H31C   single        1.083 0.020
+TP7   C3     H32C   single        1.083 0.020
+TP7   C4     H41C   single        1.083 0.020
+TP7   C4     H42C   single        1.083 0.020
+TP7   C5     H51C   single        1.083 0.020
+TP7   C5     H52C   single        1.083 0.020
+TP7   C6     H61C   single        1.083 0.020
+TP7   C6     H62C   single        1.083 0.020
+TP7   C7     H71C   single        1.083 0.020
+TP7   C7     H72C   single        1.083 0.020
+TP7   S7      H7    single        1.327 0.020
+#
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+TP7   H       N       C1          119.96 3.000
+TP7   H       N       CA          119.96 3.000
+TP7   C1      N       CA          119.99 3.000
+TP7   O4P     P       O3P         109.49 3.000
+TP7   O4P     P       O2P         109.44 3.000
+TP7   O3P     P       O2P         109.47 3.000
+TP7   O4P     P       O1P         109.49 3.000
+TP7   O3P     P       O1P         109.48 3.000
+TP7   O2P     P       O1P         109.45 3.000
+TP7   CB      O4P     P           123.04 3.000
+TP7   HB      CB      CG          109.46 3.000
+TP7   HB      CB      CA          109.46 3.000
+TP7   CG      CB      CA          109.49 3.000
+TP7   HB      CB      O4P         109.46 3.000
+TP7   CG      CB      O4P         109.46 3.000
+TP7   CA      CB      O4P         109.50 3.000
+TP7   CA      C       O           120.03 3.000
+TP7   CA      C       OXT         120.03 3.000
+TP7   O       C       OXT         119.95 3.000
+TP7   HA      CA      C           109.47 3.000
+TP7   HA      CA      CB          109.47 3.000
+TP7   C       CA      CB          109.46 3.000
+TP7   HA      CA      N           109.48 3.000
+TP7   C       CA      N           109.50 3.000
+TP7   CB      CA      N           109.45 3.000
+TP7  HG3C     CG     HG2C         109.47 3.000
+TP7  HG3C     CG     HG1C         109.47 3.000
+TP7  HG2C     CG     HG1C         109.47 3.000
+TP7  HG3C     CG      CB          109.47 3.000
+TP7  HG2C     CG      CB          109.48 3.000
+TP7  HG1C     CG      CB          109.48 3.000
+TP7   C2      C1      O1          119.95 3.000
+TP7   C2      C1      N           120.03 3.000
+TP7   O1      C1      N           120.02 3.000
+TP7  H22C     C2     H21C         109.47 3.000
+TP7  H22C     C2      C3          109.47 3.000
+TP7  H21C     C2      C3          109.47 3.000
+TP7  H22C     C2      C1          109.47 3.000
+TP7  H21C     C2      C1          109.47 3.000
+TP7   C3      C2      C1          109.49 3.000
+TP7  H32C     C3     H31C         109.47 3.000
+TP7  H32C     C3      C4          109.47 3.000
+TP7  H31C     C3      C4          109.47 3.000
+TP7  H32C     C3      C2          109.47 3.000
+TP7  H31C     C3      C2          109.47 3.000
+TP7   C4      C3      C2          109.47 3.000
+TP7  H42C     C4     H41C         109.47 3.000
+TP7  H42C     C4      C5          109.47 3.000
+TP7  H41C     C4      C5          109.47 3.000
+TP7  H42C     C4      C3          109.47 3.000
+TP7  H41C     C4      C3          109.47 3.000
+TP7   C5      C4      C3          109.46 3.000
+TP7  H52C     C5     H51C         109.48 3.000
+TP7  H52C     C5      C6          109.48 3.000
+TP7  H51C     C5      C6          109.48 3.000
+TP7  H52C     C5      C4          109.48 3.000
+TP7  H51C     C5      C4          109.48 3.000
+TP7   C6      C5      C4          109.44 3.000
+TP7  H62C     C6     H61C         109.48 3.000
+TP7  H62C     C6      C7          109.48 3.000
+TP7  H61C     C6      C7          109.48 3.000
+TP7  H62C     C6      C5          109.48 3.000
+TP7  H61C     C6      C5          109.48 3.000
+TP7   C7      C6      C5          109.44 3.000
+TP7  H72C     C7     H71C         109.48 3.000
+TP7  H72C     C7      S7          109.47 3.000
+TP7  H71C     C7      S7          109.47 3.000
+TP7  H72C     C7      C6          109.48 3.000
+TP7  H71C     C7      C6          109.48 3.000
+TP7   S7      C7      C6          109.45 3.000
+TP7   H7      S7      C7          109.48 3.000
+#
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+TP7 CONST_01       O1      C1      N       CA           -0.05   0.0 0
+TP7 CONST_02       C2      C1      N       CA          179.99   0.0 0
+TP7 CONST_03       H       N       C1      O1         -176.62   0.0 0
+TP7 CONST_04       H       N       C1      C2            3.42   0.0 0
+TP7 Var_01         C3      C2      C1      N           179.99  30.0 3
+TP7 Var_02         CB      O4P     P       O1P          54.98  30.0 3
+TP7 Var_03         CB      O4P     P       O2P         -64.99  30.0 3
+TP7 Var_04         CB      O4P     P       O3P         175.01  30.0 3
+TP7 Var_05         C3      C2      C1      O1            0.04  30.0 3
+TP7 Var_06         C4      C3      C2      C1          179.96  30.0 3
+TP7 Var_07         C5      C4      C3      C2          179.96  30.0 3
+TP7 Var_08         C6      C5      C4      C3          180.00  30.0 3
+TP7 Var_09         C7      C6      C5      C4          180.00  30.0 3
+TP7 Var_10         S7      C7      C6      C5         -179.99  30.0 3
+TP7 Var_11        H21C     C2      C1      N           -60.01  30.0 3
+TP7 Var_12        H22C     C2      C1      N            59.98  30.0 3
+TP7 Var_13        H21C     C2      C1      O1          120.04  30.0 3
+TP7 Var_14        H22C     C2      C1      O1         -119.97  30.0 3
+TP7 Var_15        H31C     C3      C2      C1          -60.03  30.0 3
+TP7 Var_16        H32C     C3      C2      C1           59.97  30.0 3
+TP7 Var_17        H41C     C4      C3      C2           59.97  30.0 3
+TP7 Var_18        H42C     C4      C3      C2          -60.04  30.0 3
+TP7 Var_19        H51C     C5      C4      C3          -60.01  30.0 3
+TP7 Var_20        H52C     C5      C4      C3           60.01  30.0 3
+TP7 Var_21        H21C     C2      C3      C4           59.96  30.0 1
+TP7 Var_22        H22C     C2      C3      C4          -60.03  30.0 1
+TP7 Var_23        H61C     C6      C5      C4           60.01  30.0 3
+TP7 Var_24        H62C     C6      C5      C4          -60.01  30.0 3
+TP7 Var_25        H31C     C3      C4      C5           59.96  30.0 1
+TP7 Var_26        H32C     C3      C4      C5          -60.04  30.0 1
+TP7 Var_27        H71C     C7      C6      C5           60.02  30.0 3
+TP7 Var_28        H72C     C7      C6      C5          -60.00  30.0 3
+TP7 Var_29        H41C     C4      C5      C6          -60.01  30.0 1
+TP7 Var_30        H42C     C4      C5      C6           60.00  30.0 1
+TP7 Var_31        H51C     C5      C6      C7           60.01  30.0 1
+TP7 Var_32        H52C     C5      C6      C7          -60.01  30.0 1
+TP7 Var_33        H61C     C6      C7      S7          -60.00  30.0 2
+TP7 Var_34        H62C     C6      C7      S7           60.02  30.0 2
+#
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+TP7 chir_01   CB      O4P     CA      CG    negativ
+TP7 chir_02   CA      N       CB      C     negativ
+#
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+TP7 plan-1      N 0.020
+TP7 plan-1     CA 0.020
+TP7 plan-1     O1 0.020
+TP7 plan-1     C1 0.020
+TP7 plan-1     C2 0.020
+TP7 plan-1      H 0.020
+TP7 plan-2      C 0.020
+TP7 plan-2    OXT 0.020
+TP7 plan-2      O 0.020
+TP7 plan-2     CA 0.020

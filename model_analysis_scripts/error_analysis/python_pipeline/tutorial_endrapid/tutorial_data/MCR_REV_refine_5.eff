@@ -1,0 +1,1277 @@
+# Effective refinement parameters
+# Date 2022-01-05 Time 19:47:18 PST -0800 (1641440838.51 s)
+
+# Command to extract only non-defaults:
+#   phenix.refine --diff_params "MCR_REV_refine_5.eff"
+
+refinement {
+  dry_run = False
+  crystal_symmetry {
+    unit_cell = 83.0818 119.777 123.21 90 91.7319 90
+    space_group = "P 1 21 1"
+  }
+  input {
+    pdb {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Refine_4/MCR_REV_refine_4-coot-0.pdb"
+    }
+    neutron_data {
+      ignore_xn_free_r_mismatch = False
+      file_name = None
+      labels = None
+      high_resolution = None
+      low_resolution = None
+      outliers_rejection = True
+      french_wilson_scale = True
+      french_wilson {
+        max_bins = 60
+        min_bin_size = 40
+      }
+      sigma_fobs_rejection_criterion = None
+      sigma_iobs_rejection_criterion = None
+      ignore_all_zeros = True
+      force_anomalous_flag_to_be_equal_to = None
+      convert_to_non_anomalous_if_ratio_pairs_lone_less_than_threshold = 0.5
+      r_free_flags {
+        file_name = None
+        label = None
+        test_flag_value = None
+        ignore_r_free_flags = False
+        disable_suitability_test = False
+        ignore_pdb_hexdigest = False
+        generate = False
+        fraction = 0.1
+        max_free = 2000
+        lattice_symmetry_max_delta = 5
+        use_lattice_symmetry = True
+        use_dataman_shells = False
+        n_shells = 20
+      }
+    }
+    xray_data {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Refine_4/MCR_REV_refine_4.mtz"
+      labels = "I-obs,SIGI-obs"
+      high_resolution = None
+      low_resolution = None
+      outliers_rejection = True
+      french_wilson_scale = True
+      french_wilson {
+        max_bins = 60
+        min_bin_size = 40
+      }
+      sigma_fobs_rejection_criterion = None
+      sigma_iobs_rejection_criterion = None
+      ignore_all_zeros = True
+      force_anomalous_flag_to_be_equal_to = None
+      convert_to_non_anomalous_if_ratio_pairs_lone_less_than_threshold = 0.5
+      r_free_flags {
+        file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Chris_1.19/Runs44_53_refine_data (3).mtz"
+        label = "R-free-flags"
+        test_flag_value = 1
+        ignore_r_free_flags = False
+        disable_suitability_test = False
+        ignore_pdb_hexdigest = False
+        generate = False
+        fraction = 0.1
+        max_free = 2000
+        lattice_symmetry_max_delta = 5
+        use_lattice_symmetry = True
+        use_dataman_shells = False
+        n_shells = 20
+      }
+    }
+    experimental_phases {
+      file_name = None
+      labels = None
+    }
+    monomers {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/dya.ligands.cif"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/COM.cif"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/tp7_new.cif"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/F43.cif"
+    }
+    sequence {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/rcsb_pdb_3M1V.fasta"
+    }
+    symmetry_safety_check = *error warning
+  }
+  output {
+    prefix = "MCR_REV_refine"
+    serial = 5
+    serial_format = "%d"
+    job_title = None
+    write_eff_file = True
+    write_geo_file = True
+    write_final_geo_file = True
+    write_def_file = False
+    write_model_cif_file = True
+    write_reflection_cif_file = True
+    export_final_f_model = False
+    write_maps = True
+    write_map_coefficients = True
+    write_map_coefficients_only = False
+    pickle_fmodel = False
+    n_resolution_bins = None
+    quiet = False
+  }
+  electron_density_maps {
+    apply_default_maps = None
+    map_coefficients {
+      map_type = "2mFo-DFc"
+      format = *mtz phs
+      mtz_label_amplitudes = "2FOFCWT"
+      mtz_label_phases = "PH2FOFCWT"
+      fill_missing_f_obs = True
+      acentrics_scale = 2
+      centrics_pre_scale = 1
+      sharpening = False
+      sharpening_b_factor = None
+      exclude_free_r_reflections = False
+      isotropize = True
+      dev {
+        complete_set_up_to_d_min = False
+        aply_same_incompleteness_to_complete_set_at = randomly low high
+      }
+    }
+    map_coefficients {
+      map_type = "2mFo-DFc"
+      format = *mtz phs
+      mtz_label_amplitudes = "2FOFCWT_no_fill"
+      mtz_label_phases = "PH2FOFCWT_no_fill"
+      fill_missing_f_obs = False
+      acentrics_scale = 2
+      centrics_pre_scale = 1
+      sharpening = False
+      sharpening_b_factor = None
+      exclude_free_r_reflections = False
+      isotropize = True
+      dev {
+        complete_set_up_to_d_min = False
+        aply_same_incompleteness_to_complete_set_at = randomly low high
+      }
+    }
+    map_coefficients {
+      map_type = "mFo-DFc"
+      format = *mtz phs
+      mtz_label_amplitudes = "FOFCWT"
+      mtz_label_phases = "PHFOFCWT"
+      fill_missing_f_obs = False
+      acentrics_scale = 2
+      centrics_pre_scale = 1
+      sharpening = False
+      sharpening_b_factor = None
+      exclude_free_r_reflections = False
+      isotropize = True
+      dev {
+        complete_set_up_to_d_min = False
+        aply_same_incompleteness_to_complete_set_at = randomly low high
+      }
+    }
+    map_coefficients {
+      map_type = "anomalous"
+      format = *mtz phs
+      mtz_label_amplitudes = "ANOM"
+      mtz_label_phases = "PHANOM"
+      fill_missing_f_obs = False
+      acentrics_scale = 2
+      centrics_pre_scale = 1
+      sharpening = False
+      sharpening_b_factor = None
+      exclude_free_r_reflections = False
+      isotropize = True
+      dev {
+        complete_set_up_to_d_min = False
+        aply_same_incompleteness_to_complete_set_at = randomly low high
+      }
+    }
+    map {
+      map_type = None
+      format = xplor *ccp4
+      file_name = None
+      fill_missing_f_obs = False
+      grid_resolution_factor = 1/4.
+      scale = *sigma volume
+      region = *selection cell
+      atom_selection = None
+      atom_selection_buffer = 3
+      acentrics_scale = 2.0
+      centrics_pre_scale = 1.0
+      sharpening = False
+      sharpening_b_factor = None
+      exclude_free_r_reflections = False
+      isotropize = True
+    }
+  }
+  refine {
+    strategy = *individual_sites *individual_sites_real_space rigid_body \
+               *individual_adp group_adp tls *occupancies group_anomalous
+    sites {
+      individual = None
+      torsion_angles = None
+      rigid_body = None
+    }
+    adp {
+      individual {
+        isotropic = None
+        anisotropic = None
+      }
+      group_adp_refinement_mode = *one_adp_group_per_residue \
+                                  two_adp_groups_per_residue group_selection
+      group = None
+      tls = None
+    }
+    occupancies {
+      individual = None
+      remove_selection = None
+      constrained_group {
+        selection = None
+      }
+    }
+    anomalous_scatterers {
+      group {
+        selection = None
+        f_prime = 0
+        f_double_prime = 0
+        refine = *f_prime *f_double_prime
+      }
+    }
+  }
+  custom_scattering_factors = None
+  main {
+    show_process_info = False
+    stop_for_unknowns = True
+    bulk_solvent_and_scale = True
+    apply_overall_isotropic_scale_to_adp = True
+    flip_peptides = False
+    nqh_flips = True
+    simulated_annealing = False
+    simulated_annealing_torsion = False
+    ordered_solvent = False
+    real_space_refinement = *local global
+    rotamer_restraints = False
+    place_ions = None
+    ias = False
+    number_of_macro_cycles = 5
+    max_number_of_iterations = 25
+    use_form_factor_weights = False
+    tan_u_iso = False
+    use_geometry_restraints = True
+    use_convergence_test = False
+    target = *auto ml mlhl ml_sad ls mli
+    min_number_of_test_set_reflections_for_max_likelihood_target = 50
+    max_number_of_resolution_bins = 30
+    use_experimental_phases = None
+    random_seed = 2679941
+    scattering_table = wk1995 it1992 *n_gaussian electron neutron
+    wavelength = None
+    use_normalized_geometry_target = True
+    target_weights_only = False
+    use_f_model_scaled = False
+    max_d_min = 0.25
+    fake_f_obs = False
+    optimize_mask = False
+    occupancy_max = 1
+    occupancy_min = 0
+    stir = None
+    show_residual_map_peaks_and_holes = False
+    fft_vs_direct = False
+    switch_to_isotropic_high_res_limit = 1.5
+    find_and_add_hydrogens = False
+    correct_special_position_tolerance = 1
+    nproc = 7
+    update_f_part1 = True
+    tncs_correction = False
+  }
+  statistical_model_for_missing_atoms {
+    solvent_content = 0.5
+    map_type = *2mFo-DFc
+    resolution_factor = 0.25
+    probability_mask = True
+    diff_map_cutoff = 1.5
+    output_all_masks = False
+    use_dm_map = False
+  }
+  modify_start_model {
+    modify {
+      remove = None
+      keep = None
+      put_into_box_with_buffer = None
+      selection = None
+      flip_symmetric_amino_acids = False
+      adp {
+        atom_selection = None
+        randomize = False
+        set_b_iso = None
+        convert_to_isotropic = False
+        convert_to_anisotropic = False
+        shift_b_iso = None
+        scale_adp = None
+      }
+      sites {
+        atom_selection = None
+        shake = None
+        switch_rotamers = max_distant min_distant exact_match fix_outliers
+        translate = 0 0 0
+        rotate = 0 0 0
+        euler_angle_convention = *xyz zyz
+      }
+      occupancies {
+        atom_selection = None
+        randomize = False
+        set = None
+      }
+      rotate_about_axis {
+        axis = None
+        angle = None
+        atom_selection = None
+      }
+      change_of_basis = None
+      renumber_residues = False
+      increment_resseq = None
+      truncate_to_polyala = False
+      truncate_to_polygly = False
+      remove_alt_confs = False
+      always_keep_one_conformer = False
+      set_chemical_element_simple_if_necessary = None
+      set_seg_id_to_chain_id = False
+      clear_seg_id = False
+      convert_semet_to_met = False
+      convert_met_to_semet = False
+      rename_chain_id {
+        old_id = None
+        new_id = None
+      }
+      set_charge {
+        charge_selection = None
+        charge = None
+      }
+      neutralize_scatterers = False
+      remove_fraction = None
+      random_seed = None
+      move_waters_last = False
+    }
+    output {
+      file_name = None
+      format = *pdb mmcif
+    }
+  }
+  fake_f_obs {
+    fmodel {
+      k_sol = 0
+      b_sol = 0
+      b_cart = 0 0 0 0 0 0
+      scale = 1
+    }
+    structure_factors_accuracy {
+      algorithm = *fft direct
+      cos_sin_table = False
+      grid_resolution_factor = 0.3333333333
+      quality_factor = None
+      u_base = None
+      b_base = None
+      wing_cutoff = None
+      exp_table_one_over_step_size = None
+    }
+    mask {
+      use_asu_masks = True
+      solvent_radius = 1.1
+      shrink_truncation_radius = 0.9
+      step = 0.6
+      n_real = None
+      grid_step_factor = None
+      verbose = 1
+      mean_shift_for_mask_update = 0.1
+      ignore_zero_occupancy_atoms = True
+      ignore_hydrogens = True
+      n_radial_shells = 1
+      radial_shell_width = 1.3
+    }
+    r_free_flags_fraction = None
+    scattering_table = wk1995 it1992 *n_gaussian neutron
+  }
+  hydrogens {
+    refine = individual *riding Auto
+    force_riding_adp = None
+    optimize_scattering_contribution = True
+    contribute_to_f_calc = True
+    high_resolution_limit_to_include_scattering_from_h = 1.6
+    real_space_optimize_x_h_orientation = True
+    xh_bond_distance_deviation_limit = 0
+    build {
+      map_type = "mFobs-DFmodel"
+      map_cutoff = 2
+      secondary_map_type = "2mFobs-DFmodel"
+      secondary_map_cutoff = 1.4
+      angular_step = 3
+      dod_and_od = False
+      filter_dod = False
+      min_od_dist = 0.6
+      max_od_dist = 1.35
+      min_dod_angle = 85
+      max_dod_angle = 170
+      h_bond_min_mac = 1.8
+      h_bond_max = 3.9
+      use_sigma_scaled_maps = True
+      resolution_factor = 0.25
+      map_next_to_model {
+        min_model_peak_dist = 0.7
+        max_model_peak_dist = 1.05
+        min_peak_peak_dist = 0.7
+        use_hydrogens = False
+      }
+      max_number_of_peaks = None
+      peak_search {
+        peak_search_level = 1
+        max_peaks = 0
+        interpolate = True
+        min_distance_sym_equiv = None
+        general_positions_only = True
+        min_cross_distance = 1
+        min_cubicle_edge = 5
+      }
+    }
+    local_real_space_fit_angular_step = 0.5
+  }
+  group_b_iso {
+    number_of_macro_cycles = 3
+    max_number_of_iterations = 25
+    convergence_test = False
+    run_finite_differences_test = False
+    use_restraints = True
+    restraints_weight = None
+  }
+  adp {
+    iso {
+      max_number_of_iterations = 25
+      scaling {
+        scale_max = 3
+        scale_min = 10
+      }
+    }
+  }
+  tls {
+    find_automatically = None
+    one_residue_one_group = None
+    refine_T = True
+    refine_L = True
+    refine_S = True
+    number_of_macro_cycles = 2
+    max_number_of_iterations = 25
+    start_tls_value = None
+    run_finite_differences_test = False
+    eps = 1e-06
+    min_tls_group_size = 5
+    verbose = True
+  }
+  adp_restraints {
+    iso {
+      use_u_local_only = False
+      sphere_radius = 5
+      distance_power = 1.69
+      average_power = 1.03
+      wilson_b_weight_auto = False
+      wilson_b_weight = None
+      plain_pairs_radius = 5
+      refine_ap_and_dp = False
+    }
+  }
+  group_occupancy {
+    number_of_macro_cycles = 3
+    max_number_of_iterations = 25
+    convergence_test = False
+    run_finite_differences_test = False
+    constrain_correlated_3d_groups = False
+  }
+  group_anomalous {
+    number_of_minimizer_cycles = 3
+    lbfgs_max_iterations = 20
+    number_of_finite_difference_tests = 0
+    find_automatically = False
+  }
+  rigid_body {
+    mode = *first_macro_cycle_only every_macro_cycle
+    target = ls_wunit_k1 ml *auto
+    target_auto_switch_resolution = 6
+    disable_final_r_factor_check = False
+    refine_rotation = True
+    refine_translation = True
+    max_iterations = 25
+    bulk_solvent_and_scale = True
+    euler_angle_convention = *xyz zyz
+    lbfgs_line_search_max_function_evaluations = 10
+    min_number_of_reflections = 200
+    multi_body_factor = 1
+    zone_exponent = 3
+    high_resolution = 3
+    max_low_high_res_limit = None
+    number_of_zones = 5
+  }
+  ncs {
+    type = *torsion cartesian constraints
+    constraints {
+      refine_operators = True
+      apply_to_coordinates = True
+      apply_to_adp = True
+    }
+    coordinate_sigma = 0.05
+    restrain_b_factors = False
+    b_factor_weight = 10
+    excessive_distance_limit = 1.5
+    special_position_warnings_only = False
+    torsion {
+      sigma = 2.5
+      limit = 15
+      fix_outliers = False
+      check_rotamer_consistency = Auto
+      target_damping = False
+      damping_limit = 10
+      filter_phi_psi_outliers = True
+      restrain_to_master_chain = False
+      silence_warnings = False
+    }
+  }
+  modify_f_obs {
+    remove = random strong weak strong_and_weak low other
+    remove_fraction = 0.1
+    fill_mode = fobs_mean_mixed_with_dfmodel random fobs_mean *dfmodel
+  }
+  pdb_interpretation {
+    restraints_library {
+      cdl = True
+      mcl = True
+      cis_pro_eh99 = True
+      omega_cdl = False
+      cdl_nucleotides = False
+      cdl_nucleotides_esd = *phenix csd
+      cdl_svl = False
+      rdl = False
+      rdl_selection = *all TRP
+      hpdl = False
+    }
+    sort_atoms = True
+    flip_symmetric_amino_acids = True
+    superpose_ideal_ligand = *None all SF4 F3S DVT
+    disable_uc_volume_vs_n_atoms_check = False
+    allow_polymer_cross_special_position = False
+    correct_hydrogens = True
+    secondary_structure {
+      protein {
+        enabled = True
+        search_method = *ksdssp mmtbx_dssp from_ca cablam
+        distance_ideal_n_o = 2.9
+        distance_cut_n_o = 3.5
+        remove_outliers = True
+        restrain_hbond_angles = True
+        helix {
+          serial_number = None
+          helix_identifier = None
+          enabled = True
+          selection = None
+          helix_type = *alpha pi 3_10 unknown
+          sigma = 0.05
+          slack = 0
+          top_out = False
+          angle_sigma_scale = 1
+          angle_sigma_set = None
+          hbond {
+            donor = None
+            acceptor = None
+          }
+        }
+        sheet {
+          enabled = True
+          first_strand = None
+          sheet_id = None
+          strand {
+            selection = None
+            sense = parallel antiparallel *unknown
+            bond_start_current = None
+            bond_start_previous = None
+          }
+          sigma = 0.05
+          slack = 0
+          top_out = False
+          angle_sigma_scale = 1
+          angle_sigma_set = None
+          hbond {
+            donor = None
+            acceptor = None
+          }
+        }
+      }
+      nucleic_acid {
+        enabled = True
+        hbond_distance_cutoff = 3.4
+        angle_between_bond_and_nucleobase_cutoff = 35
+        scale_bonds_sigma = 1
+        base_pair {
+          enabled = True
+          base1 = None
+          base2 = None
+          saenger_class = 0
+          restrain_planarity = False
+          planarity_sigma = 0.176
+          restrain_hbonds = True
+          restrain_hb_angles = True
+          restrain_parallelity = True
+          parallelity_target = 0
+          parallelity_sigma = 0.0335
+        }
+        stacking_pair {
+          enabled = True
+          base1 = None
+          base2 = None
+          angle = 0
+          sigma = 0.027
+        }
+      }
+      ss_by_chain = True
+      from_ca_conservative = False
+      max_rmsd = 1
+      use_representative_chains = True
+      max_representative_chains = 100
+      enabled = False
+    }
+    c_beta_restraints = True
+    reference_coordinate_restraints {
+      enabled = False
+      exclude_outliers = True
+      selection = all
+      sigma = 0.2
+      limit = 1
+      top_out = False
+    }
+    automatic_linking {
+      link_all = False
+      link_none = False
+      link_metals = False
+      link_residues = False
+      link_amino_acid_rna_dna = False
+      link_carbohydrates = False
+      link_ligands = False
+      link_small_molecules = False
+      metal_coordination_cutoff = 3.5
+      amino_acid_bond_cutoff = 1.9
+      inter_residue_bond_cutoff = 2.2
+      buffer_for_second_row_elements = 0.5
+      carbohydrate_bond_cutoff = 1.99
+      ligand_bond_cutoff = 1.99
+      small_molecule_bond_cutoff = 1.98
+    }
+    include_in_automatic_linking {
+      selection_1 = None
+      selection_2 = None
+      bond_cutoff = 4.5
+    }
+    exclude_from_automatic_linking {
+      selection_1 = None
+      selection_2 = None
+    }
+    use_neutron_distances = False
+    apply_cis_trans_specification {
+      cis_trans_mod = cis *trans
+      residue_selection = None
+    }
+    apply_cif_restraints {
+      restraints_file_name = None
+      residue_selection = None
+    }
+    apply_cif_modification {
+      data_mod = None
+      residue_selection = None
+    }
+    apply_cif_link {
+      data_link = None
+      residue_selection_1 = None
+      residue_selection_2 = None
+    }
+    disulfide_bond_exclusions_selection_string = None
+    exclusion_distance_cutoff = 3
+    link_distance_cutoff = 3
+    disulfide_distance_cutoff = 3
+    add_angle_and_dihedral_restraints_for_disulfides = True
+    dihedral_function_type = *determined_by_sign_of_periodicity \
+                             all_sinusoidal all_harmonic
+    chir_volume_esd = 0.2
+    peptide_link {
+      ramachandran_restraints = False
+      cis_threshold = 45
+      apply_all_trans = False
+      discard_omega = False
+      discard_psi_phi = True
+      apply_peptide_plane = False
+      omega_esd_override_value = None
+      rama_weight = 1
+      scale_allowed = 1
+      rama_potential = *oldfield emsley
+      oldfield {
+        esd = 10
+        weight_scale = 1
+        dist_weight_max = 10
+        weight = None
+        plot_cutoff = 0.027
+      }
+      rama_selection = None
+      restrain_rama_outliers = True
+      restrain_rama_allowed = True
+      restrain_allowed_outliers_with_emsley = False
+    }
+    ramachandran_plot_restraints {
+      enabled = False
+      favored = *oldfield emsley emsley8k phi_psi_2
+      allowed = *oldfield emsley emsley8k phi_psi_2
+      outlier = *oldfield emsley emsley8k phi_psi_2
+      selection = None
+      inject_emsley8k_into_oldfield_favored = True
+      oldfield {
+        weight = 0
+        weight_scale = 0.01
+        distance_weight_min = 2
+        distance_weight_max = 10
+        plot_cutoff = 0.027
+      }
+      emsley {
+        weight = 1
+        scale_allowed = 1
+      }
+      emsley8k {
+        weight_favored = 5
+        weight_allowed = 10
+        weight_outlier = 10
+      }
+      phi_psi_2 {
+        favored_strategy = *closest highest_probability random \
+                           weighted_random
+        allowed_strategy = *closest highest_probability random \
+                           weighted_random
+        outlier_strategy = *closest highest_probability random \
+                           weighted_random
+      }
+    }
+    max_reasonable_bond_distance = 50
+    nonbonded_distance_cutoff = None
+    default_vdw_distance = 1
+    min_vdw_distance = 1
+    nonbonded_buffer = 1
+    nonbonded_weight = None
+    const_shrink_donor_acceptor = 0.6
+    vdw_1_4_factor = 0.8
+    min_distance_sym_equiv = 0.5
+    custom_nonbonded_symmetry_exclusions = None
+    translate_cns_dna_rna_residue_names = None
+    proceed_with_excessive_length_bonds = False
+    rna_sugar_pucker_analysis {
+      bond_min_distance = 1.2
+      bond_max_distance = 1.8
+      epsilon_range_min = 155
+      epsilon_range_max = 310
+      delta_range_2p_min = 129
+      delta_range_2p_max = 162
+      delta_range_3p_min = 65
+      delta_range_3p_max = 104
+      p_distance_c1p_outbound_line_2p_max = 2.9
+      o3p_distance_c1p_outbound_line_2p_max = 2.4
+      bond_detection_distance_tolerance = 0.5
+    }
+    show_histogram_slots {
+      bond_lengths = 5
+      nonbonded_interaction_distances = 5
+      bond_angle_deviations_from_ideal = 5
+      dihedral_angle_deviations_from_ideal = 5
+      chiral_volume_deviations_from_ideal = 5
+    }
+    show_max_items {
+      not_linked = 5
+      bond_restraints_sorted_by_residual = 5
+      nonbonded_interactions_sorted_by_model_distance = 5
+      bond_angle_restraints_sorted_by_residual = 5
+      dihedral_angle_restraints_sorted_by_residual = 3
+      chirality_restraints_sorted_by_residual = 3
+      planarity_restraints_sorted_by_residual = 3
+      residues_with_excluded_nonbonded_symmetry_interactions = 12
+      fatal_problem_max_lines = 10
+    }
+    ncs_group {
+      reference = None
+      selection = None
+    }
+    ncs_search {
+      enabled = False
+      exclude_selection = element H or element D or water
+      chain_similarity_threshold = 0.85
+      chain_max_rmsd = 2
+      residue_match_radius = 4
+      try_shortcuts = False
+      minimum_number_of_atoms_in_copy = 3
+      validate_user_supplied_groups = True
+    }
+    clash_guard {
+      nonbonded_distance_threshold = 0.5
+      max_number_of_distances_below_threshold = 100
+      max_fraction_of_distances_below_threshold = 0.1
+    }
+  }
+  geometry_restraints.edits {
+    excessive_bond_distance_limit = 10
+    bond {
+      action = *add delete change
+      atom_selection_1 = name NI and chain A and resname F43 and resseq 1
+      atom_selection_2 = name S1 and chain a and resname COM and resseq 554
+      symmetry_operation = None
+      distance_ideal = 2.48
+      sigma = 0.4
+      slack = None
+      limit = -1
+      top_out = False
+    }
+    bond {
+      action = *add delete change
+      atom_selection_1 = name NI and chain a and resname F43 and resseq 552
+      atom_selection_2 = name S1 and chain A and resname COM and resseq 554
+      symmetry_operation = None
+      distance_ideal = 2.52
+      sigma = 0.4
+      slack = None
+      limit = -1
+      top_out = False
+    }
+    bond {
+      action = *add delete change
+      atom_selection_1 = name NI and chain A and resname F43 and resseq 1
+      atom_selection_2 = name OE1 and chain A and resname GLN and resseq 147
+      symmetry_operation = None
+      distance_ideal = 2.3
+      sigma = 0.5
+      slack = None
+      limit = -1
+      top_out = False
+    }
+    bond {
+      action = *add delete change
+      atom_selection_1 = name NI and chain a and resname F43 and resseq 552
+      atom_selection_2 = name OE1 and chain a and resname GLN and resseq 147
+      symmetry_operation = None
+      distance_ideal = 2.3
+      sigma = 0.5
+      slack = None
+      limit = -1
+      top_out = False
+    }
+    angle {
+      action = *add delete change
+      atom_selection_1 = None
+      atom_selection_2 = None
+      atom_selection_3 = None
+      angle_ideal = None
+      sigma = None
+    }
+    dihedral {
+      action = *add delete change
+      atom_selection_1 = None
+      atom_selection_2 = None
+      atom_selection_3 = None
+      atom_selection_4 = None
+      angle_ideal = None
+      alt_angle_ideals = None
+      sigma = None
+      periodicity = 1
+    }
+    planarity {
+      action = *add delete change
+      atom_selection = None
+      sigma = None
+    }
+    parallelity {
+      action = *add delete change
+      atom_selection_1 = None
+      atom_selection_2 = None
+      sigma = 0.027
+      target_angle_deg = 0
+    }
+  }
+  geometry_restraints.remove {
+    angles = None
+    dihedrals = None
+    chiralities = None
+    planarities = None
+    parallelities = None
+  }
+  ordered_solvent {
+    low_resolution = 2.8
+    mode = *second_half filter_only every_macro_cycle \
+           every_macro_cycle_after_first
+    n_cycles = 1
+    output_residue_name = "HOH"
+    output_chain_id = "S"
+    output_atom_name = "O"
+    scattering_type = "O"
+    primary_map_type = "mFobs-DFmodel"
+    primary_map_cutoff = 3
+    secondary_map_and_map_cc_filter {
+      cc_map_1_type = "Fc"
+      cc_map_2_type = "2mFo-DFmodel"
+      poor_cc_threshold = 0.7
+      poor_map_value_threshold = 1
+    }
+    h_bond_min_mac = 1.8
+    h_bond_min_sol = 1.8
+    h_bond_max = 3.2
+    refine_adp = True
+    refine_occupancies = False
+    new_solvent = *isotropic anisotropic
+    b_iso_min = 1
+    b_iso_max = 80
+    anisotropy_min = 0.1
+    b_iso = None
+    occupancy_min = 0.1
+    occupancy_max = 1
+    occupancy = 1
+    filter_at_start = True
+    ignore_final_filtering_step = False
+    correct_drifted_waters = True
+  }
+  peak_search {
+    use_sigma_scaled_maps = True
+    resolution_factor = 0.25
+    map_next_to_model {
+      min_model_peak_dist = 1.8
+      max_model_peak_dist = 6
+      min_peak_peak_dist = 1.8
+      use_hydrogens = False
+    }
+    max_number_of_peaks = None
+    peak_search {
+      peak_search_level = 1
+      max_peaks = 0
+      interpolate = True
+      min_distance_sym_equiv = None
+      general_positions_only = False
+      min_cross_distance = 1.8
+      min_cubicle_edge = 5
+    }
+  }
+  bulk_solvent_and_scale {
+    mode = slow *fast
+    apply_back_trace = True
+    bulk_solvent = True
+    anisotropic_scaling = True
+    k_sol_b_sol_grid_search = True
+    minimization_k_sol_b_sol = True
+    minimization_b_cart = True
+    target = ls_wunit_k1 *ml
+    symmetry_constraints_on_b_cart = True
+    k_sol_max = 0.6
+    k_sol_min = 0
+    b_sol_max = 300
+    b_sol_min = 0
+    k_sol_grid_search_max = 0.6
+    k_sol_grid_search_min = 0
+    b_sol_grid_search_max = 80
+    b_sol_grid_search_min = 20
+    k_sol_step = 0.2
+    b_sol_step = 20
+    number_of_macro_cycles = 1
+    max_iterations = 25
+    min_iterations = 25
+    fix_k_sol = None
+    fix_b_sol = None
+    fix_b_cart {
+      b11 = None
+      b22 = None
+      b33 = None
+      b12 = None
+      b13 = None
+      b23 = None
+    }
+  }
+  alpha_beta {
+    free_reflections_per_bin = 140
+    number_of_macromolecule_atoms_absent = 225
+    n_atoms_included = 0
+    bf_atoms_absent = 15
+    final_error = 0
+    absent_atom_type = "O"
+    method = *est calc
+    estimation_algorithm = *analytical iterative
+    verbose = -1
+    interpolation = True
+    number_of_waters_absent = 613
+    sigmaa_estimator {
+      kernel_width_free_reflections = 100
+      kernel_on_chebyshev_nodes = True
+      number_of_sampling_points = 20
+      number_of_chebyshev_terms = 10
+      use_sampling_sum_weights = True
+    }
+  }
+  mask {
+    use_asu_masks = True
+    solvent_radius = 1.1
+    shrink_truncation_radius = 0.9
+    step = 0.6
+    n_real = None
+    grid_step_factor = None
+    verbose = 1
+    mean_shift_for_mask_update = 0.1
+    ignore_zero_occupancy_atoms = True
+    ignore_hydrogens = True
+    n_radial_shells = 1
+    radial_shell_width = 1.3
+  }
+  tardy {
+    mode = every_macro_cycle *second_and_before_last once first first_half
+    xray_weight_factor = 10
+    start_temperature_kelvin = 2500
+    final_temperature_kelvin = 300
+    velocity_scaling = True
+    temperature_cap_factor = 1.5
+    excessive_temperature_factor = 5
+    number_of_cooling_steps = 500
+    number_of_time_steps = 1
+    time_step_pico_seconds = 0.001
+    temperature_degrees_of_freedom = *cartesian constrained
+    minimization_max_iterations = 0
+    prolsq_repulsion_function_changes {
+      c_rep = None
+      k_rep = 0.75
+      irexp = None
+      rexp = None
+    }
+    omit_bonds_with_slack_greater_than = 0
+    constrain_dihedrals_with_sigma_less_than = 10
+    near_singular_hinges_angular_tolerance_deg = 5
+    emulate_cartesian = False
+    trajectory_directory = None
+  }
+  cartesian_dynamics {
+    temperature = 300
+    number_of_steps = 200
+    time_step = 0.0005
+    initial_velocities_zero_fraction = 0
+    n_print = 100
+    verbose = -1
+    random_seed = None
+    n_collect = 10
+    stop_cm_motion = True
+  }
+  simulated_annealing {
+    start_temperature = 5000
+    final_temperature = 300
+    cool_rate = 100
+    number_of_steps = 50
+    time_step = 0.0005
+    initial_velocities_zero_fraction = 0
+    interleave_minimization = False
+    verbose = -1
+    n_print = 100
+    update_grads_shift = 0.3
+    random_seed = None
+    refine_sites = True
+    refine_adp = False
+    max_number_of_iterations = 25
+    mode = every_macro_cycle *second_and_before_last once first first_half
+  }
+  target_weights {
+    optimize_xyz_weight = True
+    optimize_adp_weight = True
+    wxc_scale = 0.5
+    wxu_scale = 1
+    wc = 1
+    wu = 1
+    fix_wxc = None
+    fix_wxu = None
+    shake_sites = True
+    shake_adp = 10
+    regularize_ncycles = 50
+    verbose = 1
+    wnc_scale = 0.5
+    wnu_scale = 1
+    rmsd_cutoff_for_gradient_filtering = 3
+    force_optimize_weights = False
+    weight_selection_criteria {
+      bonds_rmsd = None
+      angles_rmsd = None
+      r_free_minus_r_work = None
+      r_free_range_width = None
+      mean_diff_b_iso_bonded_fraction = None
+      min_diff_b_iso_bonded = None
+    }
+  }
+  ias {
+    b_iso_max = 100
+    occupancy_min = -1
+    occupancy_max = 1.5
+    ias_b_iso_max = 100
+    ias_b_iso_min = 0
+    ias_occupancy_min = 0.01
+    ias_occupancy_max = 3
+    initial_ias_occupancy = 1
+    build_ias_types = L R B BH
+    ring_atoms = None
+    lone_pair {
+      atom_x = CA
+      atom_xo = C
+      atom_o = O
+    }
+    use_map = True
+    build_only = False
+    file_prefix = None
+    peak_search_map {
+      map_type = *Fobs-Fmodel mFobs-DFmodel
+      grid_step = 0.25
+      scaling = *volume sigma
+    }
+  }
+  ls_target_names {
+    target_name = *ls_wunit_k1 ls_wunit_k2 ls_wunit_kunit ls_wunit_k1_fixed \
+                  ls_wunit_k1ask3_fixed ls_wexp_k1 ls_wexp_k2 ls_wexp_kunit \
+                  ls_wff_k1 ls_wff_k2 ls_wff_kunit ls_wff_k1_fixed \
+                  ls_wff_k1ask3_fixed lsm_kunit lsm_k1 lsm_k2 lsm_k1_fixed \
+                  lsm_k1ask3_fixed
+  }
+  twinning {
+    twin_law = None
+    twin_target = *twin_lsq_f
+    detwin {
+      mode = algebraic proportional *auto
+      map_types {
+        twofofc = *two_m_dtfo_d_fc two_dtfo_fc
+        fofc = *m_dtfo_d_fc gradient m_gradient
+        aniso_correct = False
+      }
+    }
+  }
+  structure_factors_and_gradients_accuracy {
+    algorithm = *fft direct
+    cos_sin_table = False
+    grid_resolution_factor = 0.3333333333
+    quality_factor = None
+    u_base = None
+    b_base = None
+    wing_cutoff = None
+    exp_table_one_over_step_size = None
+  }
+  r_free_flags {
+    fraction = 0.1
+    max_free = 2000
+    lattice_symmetry_max_delta = 5
+    use_lattice_symmetry = True
+  }
+  reference_model {
+    enabled = False
+    file = None
+    use_starting_model_as_reference = False
+    sigma = 1
+    limit = 15
+    hydrogens = False
+    main_chain = True
+    side_chain = True
+    fix_outliers = True
+    strict_rotamer_matching = False
+    auto_shutoff_for_ncs = False
+    secondary_structure_only = False
+    reference_group {
+      reference = None
+      selection = None
+      file_name = None
+    }
+    search_options {
+      exclude_selection = element H or element D or water
+      chain_similarity_threshold = 0.85
+      chain_max_rmsd = 100
+      residue_match_radius = 1000
+      try_shortcuts = False
+      minimum_number_of_atoms_in_copy = 3
+      validate_user_supplied_groups = True
+    }
+  }
+  ion_placement {
+    debug = False
+    ion_chain_id = "X"
+    initial_occupancy = 1
+    initial_b_iso = Auto
+    refine_ion_occupancies = True
+    refine_ion_adp = *Auto isotropic anisotropic none
+    refine_anomalous = True
+    max_distance_between_like_charges = 3.5
+    use_svm = True
+    svm {
+      svm_name = *Auto heavy merged_high_res
+      filtered_outputs = True
+      min_score = 0.2
+      min_score_above = 0.1
+      min_fraction_of_next = 2
+    }
+    require_valence = False
+    ambiguous_valence_cutoff = 0.5
+    d_min_strict_valence = 1.5
+    anom_map_type = *residual simple llg
+    find_anomalous_substructure = Auto
+    use_phaser = True
+    aggressive = False
+    map_sampling_radius = 2
+    water {
+      min_2fofc_level = 1.8
+      max_fofc_level = 3
+      max_anom_level = 3
+      max_occ = 1
+      min_b_iso = 1
+      fp_max = 1
+      fpp_max = 0
+      max_stddev_b_iso = 5
+      min_frac_b_iso = 0.2
+      min_frac_calpha_b_iso = 0.75
+      max_frac_calpha_2fofc = 1.2
+      min_2fofc_coordinating = 0.9
+    }
+    phaser {
+      llgc_ncycles = None
+      distance_cutoff = 1.5
+      distance_cutoff_same_site = 0.7
+      fpp_ratio_min = 0.2
+      fpp_ratio_max = 1.1
+    }
+    chloride {
+      max_distance_to_amide_n = 3.5
+      max_distance_to_cation = 3.5
+      min_distance_to_anion = 3.5
+      min_distance_to_other_sites = 2.1
+      max_distance_to_hydroxyl = 3.5
+      delta_amide_h_angle = 20
+      delta_planar_angle = 10
+      max_deviation_from_plane = 0.8
+    }
+  }
+  gui {
+    base_output_dir = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION"
+    tmp_dir = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/.phenix/tmp"
+    send_notification = False
+    notify_email = "mdasgupta@lbl.gov"
+    add_hydrogens = False
+    skip_rsr = False
+    skip_kinemage = True
+    phil_file = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/MCR_Ni_S1_COM.edits"
+    phil_file = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/MCR_Ni_Q147.edits"
+    ready_set_hydrogens {
+      neutron_option = *all_h all_d hd_and_h hd_and_d all_hd
+      add_h_to_water = False
+      add_d_to_water = False
+      neutron_exchange_hydrogens = False
+      perdeuterate = False
+    }
+  }
+  amber {
+    use_amber = False
+    topology_file_name = None
+    coordinate_file_name = None
+    order_file_name = None
+    wxc_factor = 1
+    restraint_wt = 0
+    restraintmask = ""
+    reference_file_name = ""
+    bellymask = ""
+    qmmask = ""
+    qmcharge = 0
+    netcdf_trajectory_file_name = ""
+    print_amber_energies = False
+  }
+}

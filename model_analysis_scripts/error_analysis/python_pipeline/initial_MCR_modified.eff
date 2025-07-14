@@ -5,10 +5,10 @@ refinement {
   }
   input {
     pdb {
-      file_name = "/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example.pdb"
+      file_name = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/data_folder/example.pdb"
     }
     xray_data {
-      file_name = "/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example.mtz"
+      file_name = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/data_folder/example.mtz"
       labels = "I-obs,SIGI-obs"
       r_free_flags {
         file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Chris_1.19/Runs44_53_refine_data (3).mtz"
@@ -17,13 +17,10 @@ refinement {
       }
     }
     monomers {
-      file_name = "/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example2.cif"
-      file_name = "/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example1.cif"
+      file_name = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/data_folder/example2.cif"
+      file_name = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/data_folder/example1.cif"
       file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/tp7_new.cif"
       file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/F43.cif"
-    }
-    sequence {
-      file_name = "[]"
     }
   }
   output {

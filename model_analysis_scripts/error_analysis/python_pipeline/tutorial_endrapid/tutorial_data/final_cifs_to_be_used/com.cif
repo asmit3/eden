@@ -1,0 +1,105 @@
+# electronic Ligand Builder and Optimisation Workbench (eLBOW)
+#   - a module of PHENIX
+#   - file written: Mon Jul 12 14:46:45 2021
+#
+#   Inital geometry file: a 37 line input string
+#   Ligand name: 2-sulfanylethanesulfonic acid
+#   CSD Mogul values: True
+#   Random seed: 3628800
+#   SMILES string: O[S](=O)(=O)CCS
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+COM        COM '2-sulfanylethanesulfonic acid' ligand 12 7 .
+#
+data_comp_COM
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.partial_charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+COM         C1     C   CH2    0    .      79.4580   65.7280   67.5380
+COM         C2     C   CH2    0    .      78.8150   64.6150   66.7030
+COM         S1     S   S2     0    .      78.3770   66.1560   68.9060
+COM         S2     S   S      0    .      80.0260   63.7900   65.6620
+COM         O1S    O   OS     0    .      80.9390   64.8310   65.0910
+COM         O2S    O   OS     0    .      80.8110   62.8040   66.4810
+COM         O3S    O   OS    -1    .      79.2980   63.0600   64.5440
+COM         H11    H   HCH2   0    .      80.4830   65.4570   67.8810
+COM         H12    H   HCH2   0    .      79.7250   66.6160   66.9190
+COM         H21    H   HCH2   0    .      78.2660   63.8870   67.3450
+COM         H22    H   HCH2   0    .      77.9560   64.9980   66.1040
+COM         HS1    H   HSH1   0    .      78.7750   66.8450   69.4230
+#
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+_chem_comp_bond.value_dist_neutron
+COM   C1      C2    single        1.533 0.200     1.533
+COM   C1      S1    single        1.795 0.200     1.795
+COM   C1      H11   single        0.970 0.200     1.090
+COM   C1      H12   single        0.970 0.200     1.090
+COM   C2      S2    single        1.797 0.200     1.797
+COM   C2      H21   single        0.970 0.200     1.090
+COM   C2      H22   single        0.970 0.200     1.090
+COM   S1      HS1   single        1.200 0.200     1.300
+COM   S2      O1S   deloc         1.498 0.200     1.498
+COM   S2      O2S   deloc         1.503 0.200     1.503
+COM   S2      O3S   deloc         1.521 0.200     1.521
+#
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+COM   H12     C1      H11          98.30 20.000
+COM   H12     C1      S1          112.17 20.000
+COM   H11     C1      S1          112.17 20.000
+COM   H12     C1      C2          112.11 20.000
+COM   H11     C1      C2          112.15 20.000
+COM   S1      C1      C2          109.61 20.000
+COM   H22     C2      H21          98.87 20.000
+COM   H22     C2      S2          111.44 20.000
+COM   H21     C2      S2          111.44 20.000
+COM   H22     C2      C1          111.49 20.000
+COM   H21     C2      C1          111.53 20.000
+COM   S2      C2      C1          111.48 20.000
+COM   HS1     S1      C1          109.62 20.000
+COM   O3S     S2      O2S         109.61 20.000
+COM   O3S     S2      O1S         110.19 20.000
+COM   O2S     S2      O1S         110.20 20.000
+COM   O3S     S2      C2          108.88 20.000
+COM   O2S     S2      C2          109.72 20.000
+COM   O1S     S2      C2          108.21 20.000
+#
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+COM Var_01         O1S     S2      C2      C1          -41.00  30.0 3
+COM Var_02         S2      C2      C1      S1         -161.96  30.0 3
