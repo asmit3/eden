@@ -88,7 +88,6 @@ d = uc.d(fobs_array.indices())
 
 resolution_values = np.array(list(d))
 
-
 fobsf = fobs_array.resolution_filter(d_min=2.08, d_max=2.312).data()
 
 fobsf = np.array(list(fobsf))
@@ -241,8 +240,7 @@ for i, idx in enumerate(x_values, start=1):
 
 #outputting the 100 mtz files 
 fobs_simulations = np.random.normal(loc=f_values[None, :], scale=sigf_values[None, :], size=(100, len(f_values)))
-"""
-UNCOMMENT THIS FOR OUTPUTTING FILES
+
 for i in range(len(fobs_simulations)): 
     x_flex = flex.double(fobs_simulations[i,:])
 
@@ -250,7 +248,7 @@ for i in range(len(fobs_simulations)):
 
     mtz_dataset = new_miller_array.as_mtz_dataset(column_root_label="Fobs_perturbed")
     mtz_dataset.mtz_object().write("output"+ str(i+1)+".mtz")
-"""
+
 
 
 

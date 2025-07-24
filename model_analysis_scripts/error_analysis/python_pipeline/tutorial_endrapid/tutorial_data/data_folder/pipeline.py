@@ -1,9 +1,5 @@
 import sys
 import os
-import numpy as np
-import matplotlib as plt
-from iotbx import mtz
-from scitbx.array_family import flex
 
 
 # specify the pdb file has to be the full path pdb = files
@@ -36,65 +32,13 @@ step 8b
 was told to delete sequence
 
 
-MCR_REV_refine_5.mtz - use this to extract rfree flags
+MCR_REV_refine_5.mtz
 use this to create 100 kicked mtz 
 """
 
 #fname = sys.argv[1]
 
 #data_folder = fname 
-
-def create_mtz(mtz_file):
-    
-    seed = np.random.randint(0, 2**32 - 1)  
-    print("Using seed: ", seed)
-    np.random.seed(seed)
-
-
-    try: 
-        user_input = str(input("Enter a seed (or press Enter to use random seed): ")).strip()
-    except SyntaxError as e: 
-        print("No input detected. Using random seed:", seed)
-    
-    # Initialize RNG with that seed
-    np.random.seed(seed)
-
-    mtz_obj = mtz.object(mtz_file)
-    # /Users/kanishkkondaka/Desktop/phenix/0F.mtz 
-
-
-    dataset = mtz_obj.as_miller_arrays_dict()
-
-    key = ('crystal', 'Experimental-data-used-in-refinement', 'F-obs-filtered') # Fmodel 
-    #miller_array = dataset[key]
-    fobs_array = dataset[key]
-
-
-    key2 = ('crystal', 'Model-structure-factors-(all-solvent-and-scales-included)', 'F-model')
-    array = dataset[key2]
-    fmodel_array = dataset[key2]
-    fmodel_values = np.array(array.amplitudes().data())
-
-    data_values = fobs_array.data()
-
-    f_values = np.array(list(data_values))
-
-
-    sigmas = fobs_array.sigmas()
-    sigf_values = np.array(list(sigmas))
-    
-
-    fobs_simulations = np.random.normal(loc=f_values[None, :], scale=sigf_values[None, :], size=(100, len(f_values)))
-
-    for i in range(len(fobs_simulations)): 
-        x_flex = flex.double(fobs_simulations[i,:])
-
-        new_miller_array = fobs_array.customized_copy(data=x_flex)
-
-        mtz_dataset = new_miller_array.as_mtz_dataset(column_root_label="Fobs_perturbed")
-        mtz_dataset.mtz_object().write("kicked"+ str(i+1)+".mtz")
-
-
 
 
 def find_structure_files(directory, extensions=('.pdb', '.mtz', '.cif','.fasta')):
@@ -119,8 +63,6 @@ example:
 '.cif': ['/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example2.cif', 
 '/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example1.cif']}
 """
-
-
 
 # print results
 for ext, paths in structure_files.items():
@@ -166,11 +108,6 @@ def update_eff_file(template_path, output_path, replacements):
         # step 8b - replace mtz path
         elif line.startswith("xray_data {") and i + 1 < len(lines):
             lines[i + 1] = f'      file_name = "{mtz_path}"\n'
-
-        # replacxe R-free flags with the mtz file
-        elif line.startswith("r_free_flags {"): 
-            lines[i + 1] = f'      file_name = "{mtz_path}"\n'
-
 
         # step 8c - replace CIFs
         elif line.startswith("monomers {"):
@@ -227,9 +164,6 @@ def update_eff_file(template_path, output_path, replacements):
 
     with open(output_path, 'w') as f:
         f.writelines(lines)
-
-
-create_mtz(structure_files['.mtz'])
 
 
 
