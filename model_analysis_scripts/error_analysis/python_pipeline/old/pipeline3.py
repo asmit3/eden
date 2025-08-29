@@ -6,12 +6,14 @@ from iotbx import mtz
 from scitbx.array_family import flex
 
 
+
 # specify the pdb file has to be the full path pdb = files
 # also mtz file for that , mtz = mtz path
 # data-folder = some path, probably easier
 # this folder has pdb, mtz, and cif files
 # in that folder you search for the pdb file, mtz file, and multiple cif files
 # finds these files and assigns them to the variables in the phil files.
+
 """
 stores every line into an array, and write out a new phil file called ckanishk.phil
 step 8a
@@ -43,23 +45,24 @@ use this to create 100 kicked mtz
 #fname = sys.argv[1]
 
 #data_folder = fname 
+seed = np.random.randint(0, 2**32 - 1)  
 
-def create_mtz(mtz_file):
-    
-    seed = np.random.randint(0, 2**32 - 1)  
+def create_mtz(mtz_file, output_dir):
     print("Using seed: ", seed)
     np.random.seed(seed)
 
-
+    """
+    UNCOMMENT LATER WITH INPUT AS WELL!
     try: 
         user_input = str(input("Enter a seed (or press Enter to use random seed): ")).strip()
     except SyntaxError as e: 
         print("No input detected. Using random seed:", seed)
+    """
     
     # Initialize RNG with that seed
     np.random.seed(seed)
-
-    mtz_obj = mtz.object(mtz_file)
+    print(mtz_file)
+    mtz_obj = mtz.object(''.join(mtz_file))
     # /Users/kanishkkondaka/Desktop/phenix/0F.mtz 
 
 
@@ -70,10 +73,7 @@ def create_mtz(mtz_file):
     fobs_array = dataset[key]
 
 
-    key2 = ('crystal', 'Model-structure-factors-(all-solvent-and-scales-included)', 'F-model')
-    array = dataset[key2]
-    fmodel_array = dataset[key2]
-    fmodel_values = np.array(array.amplitudes().data())
+
 
     data_values = fobs_array.data()
 
@@ -86,60 +86,32 @@ def create_mtz(mtz_file):
 
     fobs_simulations = np.random.normal(loc=f_values[None, :], scale=sigf_values[None, :], size=(100, len(f_values)))
 
+    
+    os.makedirs(output_dir, exist_ok=True)
+
     for i in range(len(fobs_simulations)): 
         x_flex = flex.double(fobs_simulations[i,:])
-
         new_miller_array = fobs_array.customized_copy(data=x_flex)
 
         mtz_dataset = new_miller_array.as_mtz_dataset(column_root_label="Fobs_perturbed")
-        mtz_dataset.mtz_object().write("kicked"+ str(i+1)+".mtz")
+        
+        # Write file to 'endrapid_1/kicked1.mtz', etc.
+        output_path = os.path.join(output_dir, f"kicked{i+1}.mtz")
+        mtz_dataset.mtz_object().write(output_path)
+    
 
 
-
-
-def find_structure_files(directory, extensions=('.pdb', '.mtz', '.cif','.fasta')):
-    file_paths = {ext: [] for ext in extensions}
-
-    for root, _, files in os.walk(directory):
-        for file in files:
-            for ext in extensions:
-                if file.lower().endswith(ext):
-                    full_path = os.path.join(root, file)
-                    file_paths[ext].append(full_path)
-
-    return file_paths
-
-directory_to_search = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/tutorial_endrapid/tutorial_data/data_folder"
-structure_files = find_structure_files(directory_to_search)
-"""
-strucutre_files is an array with the absolute paths to each mtz, pdb, and cif file. 
-example: 
-{'.pdb': ['/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example.pdb'], 
-'.mtz': ['/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example.mtz'], 
-'.cif': ['/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example2.cif', 
-'/Users/yyklab/Desktop/Lab_Files/python_pipeline/data_folder/example1.cif']}
-"""
-
-
-
-# print results
-for ext, paths in structure_files.items():
-    print(f"{ext.upper()} files:")
-    for path in paths:
-        print(f"  {path}")
-
-
-
-
-def update_eff_file(template_path, output_path, replacements):
+def update_eff_file(original_mtz, template_path, output_path, replacements):
     with open(template_path, 'r') as f:
         lines = f.readlines()
 
     # extract replacements with safe defaults
     cif_paths = replacements.get('.cif', [])
     pdb_paths = replacements.get('.pdb', [])
-    mtz_path = replacements.get('.mtz', [None])[0] or ""
-#    fasta_path = replacements.get('.fasta', [None])[0] or ""
+    mtz_files = replacements.get('.mtz', [])
+    mtz_path = original_mtz
+    kicked_path = mtz_files[0] if len(mtz_files) > 0 else ""
+#   fasta_path = replacements.get('.fasta', [None])[0] or ""
     if not pdb_paths:
         print("Warning: No .pdb files found.")
     if not mtz_path:
@@ -165,10 +137,12 @@ def update_eff_file(template_path, output_path, replacements):
 
         # step 8b - replace mtz path
         elif line.startswith("xray_data {") and i + 1 < len(lines):
-            lines[i + 1] = f'      file_name = "{mtz_path}"\n'
+            lines[i + 1] = f'      file_name = "{kicked_path}"\n'
+            lines[i + 2] = f'      labels = "F-obs-filtered,SIGF-obs-filtered"\n'
 
         # replacxe R-free flags with the mtz file
         elif line.startswith("r_free_flags {"): 
+            print("here")
             lines[i + 1] = f'      file_name = "{mtz_path}"\n'
 
 
@@ -229,17 +203,74 @@ def update_eff_file(template_path, output_path, replacements):
         f.writelines(lines)
 
 
-create_mtz(structure_files['.mtz'])
+
+def find_structure_files(directory, extensions):
+    file_paths = {ext: [] for ext in extensions}
+
+    for root, _, files in os.walk(directory):
+        for file in files:
+            for ext in extensions:
+                if file.lower().endswith(ext):
+                    full_path = os.path.join(root, file)
+                    file_paths[ext].append(full_path)
+
+    return file_paths
+
+def get_endrapid_paths(base_dir): # sorts numerically, previous version sorts lexiconally
+    return sorted([
+        os.path.join(base_dir, name)
+        for name in os.listdir(base_dir)
+        if os.path.isdir(os.path.join(base_dir, name)) and name.startswith("endrapid_")
+    ], key=lambda x: int(x.split("_")[-1]))
+
+
+import os
+def create_endrapid(base_dir): 
+#    base_dir = os.getcwd()  # Or set to a specific path
+
+    # Loop through 1 to 100 and create folders + copy files
+    for i in range(1, 101):
+        folder_name = f"endrapid_{i}"
+        folder_path = os.path.join(base_dir, folder_name)
+        os.makedirs(folder_path, exist_ok=True)
+
+
+def main():
+    directory_to_search = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/tutorial_endrapid/tutorial_data" # CHANGE THIS!
+    #/pscratch/sd/k/kkondaka/newfolder/python_endrapid_test_7_26/kanishk_endrapid/tutorial_endrapid/tutorial_data
+    
+    create_endrapid(directory_to_search)
+    end_rapid_folders = get_endrapid_paths(directory_to_search)
 
 
 
-template_file = "initial_MCR.eff"
-output_file = "initial_MCR_modified.eff"
+    original_mtz = find_structure_files(directory_to_search, ('.mtz',))
+    print(original_mtz)
+    create_mtz(original_mtz['.mtz'], directory_to_search)
 
-update_eff_file(template_file, output_file, structure_files)
+    structure_files = find_structure_files(directory_to_search, ('.pdb', '.mtz', '.cif'))
 
+    structure_files['.mtz'] = [f for f in structure_files['.mtz'] if not f.endswith("kicked.mtz")]
+    """
+        print(structure_files)
+        for ext, paths in structure_files.items():
+            print(f"{ext.upper()} files:")
+            for path in paths:
+                print(f"  {path}")
+     """
+    for j in range(len(end_rapid_folders)):
+        end_rapid_path = end_rapid_folders[j]
+        template_file = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/tutorial_endrapid/tutorial_data/initial_MCR.eff"
+        #/pscratch/sd/k/kkondaka/newfolder/python_endrapid_test_7_26/kanishk_endrapid/tutorial_endrapid/tutorial_data
+        output_file = os.path.join(end_rapid_path, "initial_MCR_modified.eff")
+        update_eff_file(''.join(original_mtz['.mtz']), template_file, output_file, structure_files)
 
-
+main()
+"""
+1. use these folders endrapid_1 -> kicked.mtz, write out a modified phil file
+2. there a bunch of endrapid folders with like 100
+3. phenix.refine params.phil, run batch jobs on the command line
+"""
 
 
 

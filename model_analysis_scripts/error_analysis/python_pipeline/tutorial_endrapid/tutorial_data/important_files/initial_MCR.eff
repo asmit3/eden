@@ -5,10 +5,10 @@ refinement {
   }
   input {
     pdb {
-      file_name = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/data_folder/example.pdb"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Refine_4/MCR_REV_refine_4-coot-0.pdb"
     }
     xray_data {
-      file_name = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/data_folder/example.mtz"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Refine_4/MCR_REV_refine_4.mtz"
       labels = "I-obs,SIGI-obs"
       r_free_flags {
         file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Chris_1.19/Runs44_53_refine_data (3).mtz"
@@ -17,15 +17,18 @@ refinement {
       }
     }
     monomers {
-      file_name = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/data_folder/example2.cif"
-      file_name = "/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/python_pipeline/data_folder/example1.cif"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/dya.ligands.cif"
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/COM.cif"
       file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/tp7_new.cif"
       file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/F43.cif"
     }
+    sequence {
+      file_name = "/Users/mdasgupta/Desktop/MCR_OX/rcsb_pdb_3M1V.fasta"
+    }
   }
   output {
-    prefix = "MCR_XFEL_refine_endrapid"
-    serial = 0
+    prefix = "MCR_REV_refine"
+    serial = 5
     serial_format = "%d"
     write_final_geo_file = True
     write_def_file = False
@@ -56,10 +59,10 @@ refinement {
     }
   }
   main {
-    number_of_macro_cycles = 3
-    nproc = 1
-    random_seed = REPLACEME
-    ordered_solvent = False
+    number_of_macro_cycles = 5
+    nproc = 7
+  }
+  fake_f_obs {
     mask {
       solvent_radius = 1.1
       grid_step_factor = None
@@ -111,19 +114,15 @@ refinement {
     mean_shift_for_mask_update = 0.1
   }
   target_weights {
-    optimize_xyz_weight = False
-    optimize_adp_weight = False
+    optimize_xyz_weight = True
+    optimize_adp_weight = True
   }
+  gui {
+    base_output_dir = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION"
+    tmp_dir = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/.phenix/tmp"
+    notify_email = "mdasgupta@lbl.gov"
+    skip_kinemage = True
     phil_file = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/MCR_Ni_S1_COM.edits"
     phil_file = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/MCR_Ni_Q147.edits"
-  }
-}
-
-refinement.modify_start_model {
-  modify {
-    sites {
-      atom_selection = "not ((resname WAT or resname HOH or resname OOO))"
-      shake = 0.25
-    }
   }
 }
