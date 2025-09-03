@@ -18,7 +18,6 @@ except SyntaxError as e:
     print("No input detected. Using random seed:", seed)
 
 # Initialize RNG with that seed
-np.random.seed(seed)
 
 mtz_obj = mtz.object("/Users/yyklab/Desktop/eden/model_analysis_scripts/error_analysis/0F.mtz")
 # /Users/kanishkkondaka/Desktop/phenix/0F.mtz 

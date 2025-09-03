@@ -96,7 +96,7 @@ def create_mtz(mtz_file, output_dir, base_seed=None):
         # --- Create and write the new MTZ file ---
         x_flex = flex.double(fobs_simulation)
         new_miller_array = fobs_array.customized_copy(data=x_flex)
-        mtz_dataset = new_miller_array.as_mtz_dataset(column_root_label="Fobs_perturbed")
+        mtz_dataset = new_miller_array.as_mtz_dataset(column_root_label="F-obs-filtered")
 
         filename = "kicked{0}.mtz".format(i+1)
         output_path = os.path.join(output_dir, filename)
@@ -258,61 +258,61 @@ def get_kicked_number(path):
 
 import shutil
 def main():
-    directory_to_search = "/pscratch/sd/k/kkondaka/newfolder/endrapid_test_8_13_v2/tutorial_endrapid/tutorial_data" # CHANGE THIS!
-    #/pscratch/sd/k/kkondaka/newfolder/python_endrapid_test_7_26/kanishk_endrapid/tutorial_endrapid/tutorial_data
-    
+    directory_to_search = "/pscratch/sd/k/kkondaka/newfolder/endrapid_test_8_28/tutorial_endrapid/tutorial_data"
+
+    # 1. Ensure all 100 endrapid_* folders exist
     create_endrapid(directory_to_search)
-    end_rapid_folders = get_endrapid_paths(directory_to_search)
 
+    # 2. Clean up any old kicked*.mtz in the root before regenerating
+    for f in os.listdir(directory_to_search):
+        if f.startswith("kicked") and f.endswith(".mtz"):
+            os.remove(os.path.join(directory_to_search, f))
 
-
+    # 3. Get original mtz file (non-kicked) and generate fresh kicked*.mtz
     original_mtz = find_structure_files(directory_to_search, ['.mtz'])
-    seed_path = create_mtz(original_mtz['.mtz'][0], directory_to_search)
+    seed_map = create_mtz(original_mtz['.mtz'][0], directory_to_search)
+
+    # 4. Get sorted list of kicked*.mtz from root directory
+    kicked_files = [
+        os.path.join(directory_to_search, f)
+        for f in os.listdir(directory_to_search)
+        if f.startswith("kicked") and f.endswith(".mtz")
+    ]
+    kicked_files.sort(key=get_kicked_number)
+
+    # 5. Get all other structure files (.pdb, .mtz, .cif)
     structure_files = find_structure_files(directory_to_search, ('.pdb', '.mtz', '.cif'))
 
-    structure_files['.mtz'] = [f for f in structure_files['.mtz'] if not f.endswith("kicked.mtz")]
+    # Remove any kicked*.mtz from structure_files['.mtz'] list
+    structure_files['.mtz'] = [
+        f for f in structure_files['.mtz']
+        if not os.path.basename(f).startswith("kicked")
+    ]
 
-    structure_files['.mtz'].sort(key=get_kicked_number)
+    # 6. Get sorted list of endrapid_* folders
+    end_rapid_folders = get_endrapid_paths(directory_to_search)
 
-    """
-        print(structure_files)
-        for ext, paths in structure_files.items():
-            print(f"{ext.upper()} files:")
-            for path in paths:
-                print(f"  {path}")
-    """
-    
+    # 7. Template file path
+    template_file = os.path.join(directory_to_search, "initial_MCR.eff")
 
-    for j in range(len(end_rapid_folders)):
-        # Move kicked file into corresponding endrapid folder
-        end_rapid_path = end_rapid_folders[j]
-        if j != 0:
-            kicked_file = structure_files['.mtz'].pop(0)
-        else:
-            kicked_file = structure_files['.mtz'][0]
-            print("KICKED FILE: ",kicked_file)
-        new_kicked_path = os.path.join(end_rapid_path, os.path.basename(kicked_file))
-        shutil.move(kicked_file, new_kicked_path)
-        template_file = "/pscratch/sd/k/kkondaka/newfolder/endrapid_test_8_13_v2/tutorial_endrapid/tutorial_data/initial_MCR.eff"
+    # 8. Move each kicked file into its corresponding folder & update .eff
+    for i, end_rapid_path in enumerate(end_rapid_folders, start=1):
+        kicked_src = kicked_files[i - 1]
+        kicked_dst = os.path.join(end_rapid_path, os.path.basename(kicked_src))
+        shutil.move(kicked_src, kicked_dst)
+
         output_file = os.path.join(end_rapid_path, "initial_MCR_modified.eff")
+        seed = seed_map["kicked{0}.mtz".format(i)]
 
+        print("Moving:", kicked_src, "->", kicked_dst)
+        print("Seed:", seed)
 
-        # Update .eff using the moved .mtz path
-        print(seed_path['kicked{0}.mtz'.format(j+1)])
-        update_eff_file(original_mtz, new_kicked_path, template_file, output_file, structure_files, seed_path['kicked{0}.mtz'.format(j+1)])
-        # Get the next kicked file
-
-
-
-
+        update_eff_file(
+            original_mtz, kicked_dst,
+            template_file, output_file,
+            structure_files, seed
+        )
 
 
 main()
-"""
-1. use these folders endrapid_1 -> kicked.mtz, write out a modified phil file
-2. there a bunch of endrapid folders with like 100
-3. phenix.refine params.phil, run batch jobs on the command line
-"""
-
-
 

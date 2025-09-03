@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-directory_to_search = "/pscratch/sd/k/kkondaka/newfolder/endrapid_test_8_08/tutorial_endrapid/tutorial_data"  # CHANGE THIS
+directory_to_search = "/pscratch/sd/k/kkondaka/newfolder/endrapid_test_8_28/tutorial_endrapid/tutorial_data"  # CHANGE THIS
 
 
 def get_endrapid_paths(base_dir):  # sorts numerically
@@ -62,14 +62,10 @@ def main():
 
 source /pscratch/sd/k/kkondaka/phenix-1.20.1/phenix-1.20.1-4487/phenix_env.sh
 
-phenix.refine {0} {1} {2}
-""".format(
-            structure_files['.pdb'][0] if structure_files['.pdb'] else "",
-            structure_files['.mtz'][0] if structure_files['.mtz'] else "",
-            eff_file
-        )
+phenix.refine {0} output.prefix=MCR_XFEL_refine_endrapid_{1}
+""".format(eff_file,i+1)
         with open(script_name, "w") as f:
             f.write(script_content)
-        subprocess_run_py27(script_name)                                                                                                                                                                                                         1,17          Top
-main()
+        subprocess_run_py27(script_name) 
 
+main()
