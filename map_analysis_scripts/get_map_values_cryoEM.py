@@ -31,6 +31,12 @@ class Program(ProgramTemplate):
   plot = False
     .type = bool
     .help = Flag to plot the map values or not
+  mode = *line point
+    .type = choice
+    .help = Select to plot map value along line or just print out map value at a point
+  sigma_scaling = False
+    .type = bool
+    .help = Whether to use sigma scaling for cryo-EM maps
   """
   def validate(self):
     print('Validating inputs', file=self.logger)
@@ -45,8 +51,12 @@ class Program(ProgramTemplate):
     print ('Inputs OK', file=self.logger)
 
   def run(self):
-    mvc_em = map_value_calculator_em(self.params, self.data_manager)
-    mvc_em.get_map_value_along_bond_noNormalization_fixed_points()
+    if self.params.mode == 'line':
+      mvc_em = map_value_calculator_em(self.params, self.data_manager)
+      mvc_em.get_map_value_along_bond_noNormalization_fixed_points()
+    else:
+      mvc_em = map_value_calculator_em(self.params, self.data_manager)
+      mvc_em.get_map_value_at_selection()
 
 class map_value_calculator_em(object):
   def __init__(self, params, data_manager):
@@ -56,11 +66,26 @@ class map_value_calculator_em(object):
       data_manager.get_model().add_crystal_symmetry_if_necessary()
     self.crystal_symmetry = data_manager.get_real_map().crystal_symmetry()
     self.unit_cell = self.crystal_symmetry.unit_cell()
-    self.map_3d = data_manager.get_real_map().map_data()
+    if params.sigma_scaling:
+      data_manager.get_real_map().set_mean_zero_sd_one()
+      self.map_3d = data_manager.get_real_map().map_data()
+    else:
+      self.map_3d = data_manager.get_real_map().map_data()
+
     self.sele_str = params.atom_selection_str
     self.filename_template = params.filename_template
     self.plot = params.plot
 
+
+  def get_map_value_at_selection(self):
+    isel = self.model.selection(self.sele_str).iselection()
+    ph_sel = self.model.select(isel).get_hierarchy()
+    atoms_sel = ph_sel.atoms()
+    assert len(atoms_sel) == 1, 'In mode=point, 1 atom is needed. Please check selection string'
+    x,y,z=atoms_sel[0].xyz
+    map_value = self.get_map_value_at_point(x,y,z)
+    print ('Map Value at Selection %s with coordinates (%.2f, %.2f, %.2f) = %.3f'%(self.sele_str, x, y, z, map_value))
+    
   def get_map_value_at_point(self, x,y,z):
     site_cart = (x,y,z)
     site_frac = self.unit_cell.fractionalize(site_cart)
@@ -72,6 +97,7 @@ class map_value_calculator_em(object):
     isel = self.model.selection(self.sele_str).iselection()
     ph_sel = self.model.select(isel).get_hierarchy()
     atoms_sel = ph_sel.atoms()
+    assert len(atoms_sel) == 2, 'In mode=line, 2 atoms are needed. Please check selection string'
     map_values = flex.double()
     if self.swap_order:
       x1,y1,z1=atoms_sel[1].xyz
