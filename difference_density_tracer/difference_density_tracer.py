@@ -213,7 +213,11 @@ class map_value_calculator(object):
     #list_of_residue_numbers = self.residue_numbers #[82, 85, 89, 182, 212, 216]
     nrows = len(self.map_coeffs_filenames)
     ncol = 1
-    f,ax = plt.subplots(nrows)
+    if nrows == 1:
+      f,ax2 = plt.subplots(nrows)
+      ax = [ax2]
+    else:
+      f,ax = plt.subplots(nrows)
     f.set_figheight(10)
     f.set_figwidth(10)
     for imap,map_coeffs_fn in enumerate(self.map_coeffs_filenames):
