@@ -273,26 +273,27 @@ class Refiner(object):
           self.run_refine()
 
           #Step 2b: Adding oxygens on top of refined file from Step 2a
-          step2b_input = os.path.join(self.base_path, "step2b_input.pdb")
           pdb_after2a = os.path.join(self.base_path, self.get_latest_pdb())
+          step2b_input = os.path.join(self.base_path, "step2b_input.pdb")
           self.add_OEC_atoms(pdb_after2a, superposed_path, step2b_input, element_selection="oxygen")
-          self.model_filename = step2b_input
           for j, arg in enumerate(self.arguments_for_phenixrefine):
             if arg.endswith(".pdb"):
-              self.arguments_for_phenixrefine[j] = self.model_filename
+              self.arguments_for_phenixrefine[j] = step2b_input
               break
+          self.model_filename = step2b_input
           self.run_refine()
 
       elif i == 2:
         step2_output = os.path.join(self.base_path, self.get_latest_pdb())
         step3_input = os.path.join(self.base_path, "step3_input.pdb")
         self.add_solvent(step2_output, step3_input)
-        self.model_filename = step3_input
-        for j, arg in enumerate(self.arguments_for_phenixrefine):
-          if arg.endswith(".pdb"):
-            self.arguments_for_phenixrefine[j] = self.model_filename
-            break
-        self.run_refine()
+        #add_solvent() already performs refinement internally, so don't run_refine again below
+        #self.model_filename = step3_input
+        #for j, arg in enumerate(self.arguments_for_phenixrefine):
+          #if arg.endswith(".pdb"):
+            #self.arguments_for_phenixrefine[j] = self.model_filename
+            #break
+        #self.run_refine()
 
         """elif i == 3 and self.params.input_files.waters_template_pdb:
         #step3_output = os.path.join(self.base_path, self.get_latest_pdb())
