@@ -1,0 +1,11 @@
+This script was written to be run on perlmutter with phenix 1.20.
+Instructions on how to run:
+
+1. Setup a folder with all the .cif, .pdb, .mtz files collectively. Make sure that none of them are in subfolders, but all of the files are in one singular folder. 
+
+2. initial_MCR.eff must be in the same folder as well and save the path to this folder.
+
+3. pipeline2.py must be outside this folder. if using different paths to phenix, or you wish to edit the default directory, edit pipeline2.py's main() function and change the relevant strings. 
+
+4. After sourcing phenix version 1.20, run pipeline2.py (with phenix.python pipeline2.py). It will prompt for a directory, in which copy and paste the path. It will prompt for a seed in which you can provide a random number, or just press enter for a random seed.  
+
