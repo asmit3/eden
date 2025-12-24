@@ -6,50 +6,9 @@ from iotbx import mtz
 from scitbx.array_family import flex
 
 
+global directory_to_search; directory_to_search = "/pscratch/sd/k/kkondaka/newfolder/python_pipeline/pipeline_test_12_23_25/tutorial_endrapid/tutorial_data"
+global input_template_file; input_template_file = "initial_MCR.eff"
 
-# specify the pdb file has to be the full path pdb = files
-# also mtz file for that , mtz = mtz path
-# data-folder = some path, probably easier
-# this folder has pdb, mtz, and cif files
-# in that folder you search for the pdb file, mtz file, and multiple cif files
-# finds these files and assigns them to the variables in the phil files.
-
-"""
-stores every line into an array, and write out a new phil file called ckanishk.phil
-step 8a
-input {
-    pdb {
-1X    file_name = "/Users/mdasgupta/Desktop/MCR_OX/MANUSCRIPT/REVISION/Refine_4/MCR_REV_refine_4-coot-0.pdb"
-    }
-
-fchange the file_name here 
-
-ignore the R free flags
-
-search for file_name and look for a .pdb a extenion
-find something that ends with a .pdb
-the kicked.mtz will eventually be one of the 100 ouptut files
-
-mainly just changing the paths
-use protocol 2
-
-step 8b
-
-was told to delete sequence
-
-
-MCR_REV_refine_5.mtz - use this to extract rfree flags
-use this to create 100 kicked mtz 
-
-number_of_macro cycles = 15
-
-
-
-"""
-
-#fname = sys.argv[1]
-
-#data_folder = fname 
 
 
 def create_mtz(mtz_file, output_dir, base_seed=None):
@@ -275,11 +234,9 @@ def get_kicked_number(path):
 import shutil
 def main():
     global directory_to_search
-    default_dir = "/pscratch/sd/k/kkondaka/newfolder/python_pipeline/pipeline_test_12_23_25/tutorial_endrapid/tutorial_data"
-
     while True:
         try:
-            get_input = raw_input
+            get_input = raw_input # to accomdoate different python versions
         except NameError:
             get_input = input
         try:
@@ -288,9 +245,7 @@ def main():
             print("\nNo input detected. Using default directory.")
             user_input = ""
 
-        if user_input == "":
-            directory_to_search = default_dir
-        else:
+        if user_input != "":
             directory_to_search = os.path.expanduser(user_input)
 
         if os.path.isdir(directory_to_search):
@@ -333,7 +288,7 @@ def main():
     end_rapid_folders = get_endrapid_paths(directory_to_search)
 
     # 7. Template file path
-    template_file = os.path.join(directory_to_search, "initial_MCR.eff")
+    template_file = os.path.join(directory_to_search, input_template_file)
 
     # 8. Move each kicked file into its corresponding folder & update .eff
     for i, end_rapid_path in enumerate(end_rapid_folders, start=1):
