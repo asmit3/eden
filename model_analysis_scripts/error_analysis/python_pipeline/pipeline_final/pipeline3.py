@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 from iotbx import mtz
 from scitbx.array_family import flex
 
-
-global directory_to_search; directory_to_search = "/pscratch/sd/k/kkondaka/newfolder/python_pipeline/pipeline_test_12_23_25/tutorial_endrapid/tutorial_data"
-global input_template_file; input_template_file = "initial_MCR.eff"
+## INPUTS EDIT HERE ##
+directory_to_search = "/pscratch/sd/k/kkondaka/newfolder/python_pipeline/pipeline_test_12_23_25/tutorial_endrapid/tutorial_data"
+input_template_file = "/pscratch/sd/k/kkondaka/newfolder/python_pipeline/pipeline_test_12_28_25/tutorial_endrapid/tutorial_data/initial_MCR.eff/initial_MCR.eff" #just the name, not the path
 
 
 
@@ -234,6 +234,7 @@ def get_kicked_number(path):
 import shutil
 def main():
     global directory_to_search
+    global input_template_file
     while True:
         try:
             get_input = raw_input # to accomdoate different python versions
@@ -252,8 +253,28 @@ def main():
             break  # valid directory, exit loop
         else:
             print("Directory does not exist: {0}. Please try again.".format(directory_to_search))
-
+    
     print("Using directory: {0}".format(directory_to_search))
+
+    while True:
+        try:
+            get_input = raw_input
+        except NameError:
+            get_input = input
+        try:
+            user_input = get_input("Enter the template .eff file path (or press Enter to use default): ").strip()
+        except (EOFError, KeyboardInterrupt): 
+            print("\nNo input detected. Using default path.")
+            user_input = ""
+
+        if user_input != "": 
+            input_template_file = os.path.expanduser(user_input)
+        if os.path.isfile(input_template_file):
+            break
+        else:
+            print("Path does not exist: {0}. Please try again.".format(input_template_file))
+    
+    print("Using directory: {0}".format(input_template_file))
 
     # 1. Ensure all 100 endrapid_* folders exist
     create_endrapid(directory_to_search)
