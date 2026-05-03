@@ -1,0 +1,3 @@
+Various helper scripts written between 2017 - 2025 for LCLS experiments and data reduction in CCTBX
+These scripts are not maintained and may not work with recent versions of DIALS/CCTBX due to changes in APIs/library imports
+
