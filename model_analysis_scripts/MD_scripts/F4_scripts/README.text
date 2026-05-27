@@ -1,0 +1,11 @@
+These are instructions on how to run F4_automate.py. 
+The only things that need to be changed in the script are the file parameters ontop of the file. 
+pickle_stem - where the pickled files will be generated
+file_stem - where the input pdb files are
+protein_file, H1_peaks, H2_peaks, OW_peaks - path to experimental pdb or MD peak files
+water_ccp4_map - path to all water map file
+
+
+This script will run differently when running in a cpu terminal vs a pymol terminal. In a cpu terminal it will generate important figures and two important pickled files spheres and arrows. 
+
+In a pymol terminal, it will use these pickled files to generate a zoomed in picture of the specific channels.
