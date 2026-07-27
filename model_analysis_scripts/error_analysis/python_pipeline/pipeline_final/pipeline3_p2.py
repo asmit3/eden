@@ -6,8 +6,8 @@ from iotbx import mtz
 from scitbx.array_family import flex
 
 ## INPUTS EDIT HERE ##
-directory_to_search = "/pscratch/sd/k/kkondaka/newfolder/python_pipeline/pipeline_test_12_23_25/tutorial_endrapid/tutorial_data"
-input_template_file = "/pscratch/sd/k/kkondaka/newfolder/python_pipeline/pipeline_test_12_28_25/tutorial_endrapid/tutorial_data/initial_MCR.eff/initial_MCR.eff" #just the name, not the path
+directory_to_search = "/Users/yyklab/Desktop/Lab_Files/eden/model_analysis_scripts/error_analysis/python_pipeline/tutorial_endrapid/tutorial_data"
+input_template_file = "/Users/yyklab/Desktop/Lab_Files/eden/model_analysis_scripts/error_analysis/python_pipeline/tutorial_endrapid/initial_MCR.eff" #just the name, not the path
 
 
 
